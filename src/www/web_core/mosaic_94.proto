@@ -1,0 +1,91 @@
+// 打码系统协议
+// 规范校验数据
+message data_with_crc{
+    required bytes data = 1;
+    required uint32 crc = 2;
+}
+
+// 报码内容
+message report_code{
+    required uint32 id = 1;
+    required uint32 time = 2;
+    required uint32 salt = 3;
+    required uint32 type = 4;
+}
+
+// 执行码内容
+message execute_code{
+    required uint32 id = 1;
+    required uint32 time = 2;
+    required uint32 salt = 3;
+    repeated string actions = 4;
+    required uint32 type = 5;
+}
+
+message recharge_code{
+    required uint32 id = 1;
+    required uint32 time = 2;
+    required uint32 salt = 3;
+    required uint32 admin_id = 4;
+    required uint32 game_coin = 5;
+    required uint32 type = 6;
+}
+
+// 生成报码
+// msg_id=01 cowboy
+message generate_report_code_c2s{
+
+}
+
+// 生成报码
+// msg_id=02
+message generate_report_code_s2c{
+    required int32 code = 1;
+    required string report_code = 2;
+    required uint32 id = 3;
+}
+
+// 检查报码
+// msg_id=03 cowboy
+message check_report_code_c2s{
+    required string report_code = 1;
+}
+
+// 检查报码
+// msg_id=04
+message check_report_code_s2c{
+    required int32 code = 1;
+    required report_code rc = 2;
+}
+
+// 生成执行码
+// msg_id=05 cowboy
+message generate_execute_code_c2s{
+    required string report_code = 1;
+    repeated string actions = 2;
+}
+
+// 生成执行码
+// msg_id=06
+message generate_execute_code_s2c{
+    required int32 code = 1;
+    required string execute_code = 2;
+}
+
+// 执行执行码
+// msg_id=07 cowboy
+message execute_code_c2s{
+    required string execute_code = 1;
+}
+
+// 执行执行码
+// msg_id=08
+message execute_code_s2c{
+    required int32 code = 1;
+    repeated action_result ar = 2;
+}
+
+message action_result{
+    required string func = 1;
+    required bool passed = 2;
+}

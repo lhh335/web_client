@@ -1,0 +1,541 @@
+//后台充值兑换相关协议
+// 搜索单个玩家正在进行的充值申请
+
+// 查询玩家支付订单
+// msg_id=01 cowboy
+message query_pay_order_c2s{
+	required string search = 1;
+	required int32 data_length = 2;
+	required string sort = 3;
+}
+
+// msg_id=02
+message query_pay_order_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+	repeated pay_order_info poi = 3;
+}
+
+message pay_order_info{
+	required string account = 1;
+	required int32 id = 2;
+	required uint32 number = 3;
+	required string order_id = 4;
+	required int32 status = 5;
+	required int32 complete_time = 6;
+	required int32 time = 7;
+	required string promoter = 8;
+	required string platform_order_id = 9; 
+	required int32 actual_number = 10;
+	required int32 pay_platform = 11;
+}
+
+// 按推广员查询充值 $all 查询所有
+// msg_id=05 cowboy
+message query_recharged_c2s{
+	required string search = 1;
+	required int32 data_length = 2;
+	required string sort = 3;
+}
+
+// msg_id=06
+message query_recharged_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+    repeated recharge_info ri = 3;
+}
+
+message recharge_info{
+	required string order_id = 1;
+	required string account = 2;
+	required int32 id = 3;
+	required int32 rmb = 4;
+	required string recommend = 5;
+	required int32 time = 6;
+	required int32 approve = 7;
+	required string remarks = 8; 
+	required int32 invalid_time = 9;
+	required int32 end_time = 10;
+}
+
+// 按推广员查询兑换 $all 查询所有
+// msg_id=07 cowboy
+message query_exchange_c2s{
+	required string search = 1;
+	required int32 data_length = 2;
+	required string sort = 3;
+}
+
+// msg_id=08
+message query_exchange_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+    repeated exchange_info ei = 3;
+}
+
+message exchange_info{
+	required string exchange_id = 1;
+	required string account = 2;
+	required int32 id = 3;
+	required int32 coin = 4;
+	required string recommend = 5;
+	required int32 time = 6;
+	required int32 approve = 7;
+	required string remarks = 8;
+	required int32 invalid_time = 9; 
+	required int32 end_time = 10;
+}
+
+//通过玩家充值
+// msg_id=09 cowboy
+message approve_recharge_c2s{
+	required string approver = 1;
+	required string password = 2;
+	repeated string order_id = 3;
+}
+
+// msg_id=10
+message approve_recharge_s2c{
+	required int32 code = 1;
+	repeated string approved = 2;
+}
+
+//通过玩家兑换
+// msg_id=11 cowboy
+message approve_exchange_c2s{
+	required string approver = 1;
+	required string password = 2;
+	repeated string exchange_id = 3;
+}
+
+// msg_id=12
+message approve_exchange_s2c{
+	required int32 code = 1;
+	repeated string approved = 2;
+}
+
+// 拒绝玩家充值
+// msg_id=13 cowboy
+message refuse_recharge_c2s{
+	required string refuser = 1;
+	required string password = 2;
+	repeated string order_id = 3;
+}
+
+// msg_id=14
+message refuse_recharge_s2c{
+	required int32 code = 1;
+	repeated string refused = 2;
+}
+
+// 拒绝玩家兑换
+// msg_id=15 cowboy
+message refuse_exchange_c2s{
+	required string refuser = 1;
+	required string password = 2;
+	repeated string exchange_id = 3;
+}
+
+// msg_id=16
+message refuse_exchange_s2c{
+	required int32 code = 1;
+	repeated string refused = 2;
+}
+
+// 直接給玩家充值
+// msg_id=17  cowboy
+message recharge_player_c2s{
+	required string target_account = 1;
+	required string your_password = 2;
+	required int32 rmb = 3;
+}
+
+// msg_id=18
+message recharge_player_s2c{
+	required int32 code = 1;
+}
+
+// 直接給玩家兑换
+// msg_id=19 cowboy
+message exchange_player_c2s{
+	required string target_account = 1;
+	required string your_password = 2;
+	required int32 game_coin = 3;
+}
+
+// msg_id=20
+message exchange_player_s2c{
+	required int32 code = 1;
+}
+
+// 查询玩家微信订单
+// msg_id=21 cowboy
+message query_wx_order_c2s{
+	required string search = 1;
+	required int32 data_length = 2;
+	required string sort = 3;
+}
+
+// msg_id=22
+message query_wx_order_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+	repeated wx_order_info woi = 3;
+}
+
+message wx_order_info{
+	required string account = 1;
+	required int32 id = 2;
+	required int32 status = 3;
+	required int32 total_fee = 4;
+	required string out_trade_no = 5;
+	required int32 time = 6;
+	required string code = 7;
+}
+
+// 取消给玩家兑换的申请
+// msg_id=23 cowboy
+message cancel_exchange_c2s{
+	required string operator = 1;
+	required string password = 2;
+	repeated string exchange_id = 3;
+}
+
+// msg_id=24
+message cancel_exchange_s2c{
+	required int32 code = 1;
+	repeated string cancel = 2;
+}
+
+// 查询一段时间下属玩家的充值历史
+// msg_id=29 cowboy
+message query_players_recharge_c2s{
+	required string search = 1;
+	required int32 data_length = 2;
+	required string sort = 3;
+}
+
+// 查询一段时间下属玩家的兑换历史
+// msg_id=30 cowboy
+message query_players_exchange_c2s{
+	required string search = 1;
+	required int32 data_length = 2;
+	required string sort = 3;
+}
+
+// 按玩家查询充值
+// msg_id=31 cowboy
+message query_player_recharge_c2s{
+	required string account = 1;
+	required int32 data_length = 2;
+	required string search = 3;
+	required string sort = 4;
+}
+
+// msg_id=32
+message query_recharged_history_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+	repeated recharge_info ri = 3;
+	repeated total_info ti = 4;
+}
+
+message total_info{
+	required int32 type = 1;
+	required int32 sum = 2;
+}
+
+// 按玩家查询兌換
+// msg_id=33 cowboy
+message query_player_exchange_c2s{
+	required string account = 1;
+	required int32 data_length = 2;
+	required string search = 3;
+	required string sort = 4;
+}
+
+// msg_id=34
+message query_exchange_history_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+	repeated exchange_info ei = 3;
+	repeated total_info ti = 4;
+}
+
+// 拒绝推广员充值
+// msg_id=43 cowboy
+message refuse_promoter_recharge_c2s{
+	required string target_account = 1;
+	required string your_password = 2;
+	required string order_id = 3;
+}
+
+// msg_id=44
+message refuse_promoter_recharge_s2c{
+	required int32 code = 1;
+}
+
+// 拒绝推广员兑换
+// msg_id=45 cowboy
+message refuse_promoter_exchange_c2s{
+	required string target_account = 1;
+	required string your_password = 2;
+	required string exchange_id = 3;
+}
+
+// msg_id=46
+message refuse_promoter_exchange_s2c{
+	required int32 code = 1;
+}
+
+// 通过推广员充值
+// msg_id=47 cowboy
+message approve_promoter_recharge_c2s{
+	required string target_account = 1;
+	required string your_password = 2;
+	required string order_id = 3;
+}
+
+// msg_id=48
+message approve_promoter_recharge_s2c{
+	required int32 code = 1;
+}
+
+// 通过推广员兑换
+// msg_id=49 cowboy
+message approve_promoters_exchange_c2s{
+	required string target_account = 1;
+	required string your_password = 2;
+	required string exchange_id = 3;
+}
+
+// msg_id=50
+message approve_promoters_exchange_s2c{
+	required int32 code = 1;
+}
+
+// 生成充值码
+// msg_id=51 cowboy
+message generate_recharge_code_c2s{
+	required uint32 game_coin = 1;
+	required uint32 num = 2; 
+}
+
+// msg_id=52
+message generate_recharge_code_s2c{
+	required int32 code = 1;
+}
+
+// 查询充值码
+// msg_id=53 cowboy
+message query_recharge_code_c2s{
+	required string search = 1;
+	required int32 data_length = 2;
+	required string sort = 3;
+}
+
+// msg_id=54
+message query_recharge_code_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+	repeated recharge_code_info rci = 3;
+}
+
+// msg_id=55 cowboy
+message download_recharge_code_c2s{
+	required string search = 1;
+	required string sort = 2;
+}
+
+// msg_id=56
+message download_recharge_code_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+	repeated recharge_code_info rci = 3;
+}
+
+// msg_id=57 cowboy
+message invalid_recharge_code_c2s{
+	required string search = 1; 
+}
+
+// msg_id=58
+message invalid_recharge_code_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+}
+
+message recharge_code_info{
+	required uint32 id = 1;
+	required string admin = 2;
+	required uint32 game_coin = 3;
+	required uint32 status = 4;
+	required string player = 5;
+	required uint32 gen_time = 6;
+	required uint32 use_time = 7;
+	required string recharge_code = 8;
+}
+
+// msg_id=59 cowboy
+message query_return_history_c2s{
+	required string account = 1;
+	required string search = 2;
+	required string sort = 3;
+	required int32 data_length = 4;
+}
+
+// msg_id=60
+message query_return_history_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+	repeated return_history_info rhi = 3;
+	required uint64 total = 4;
+}
+
+message return_history_info{
+	required string account = 1;
+	required uint32 id = 2;
+	required double own = 3;
+	required uint32 get_out = 4;
+	required uint32 time = 5;
+}
+
+// 管理员充值推广员
+// msg_id=77 cowboy
+message recharge_promoter_c2s{
+	required string target_account = 1;
+	required string your_password = 2;
+	required int32 rmb = 3;
+}
+
+// msg_id=78
+message recharge_promoter_s2c{
+	required int32 code = 1;
+}
+
+// 管理员兑换推广员
+// msg_id=79 cowboy
+message exchange_promoter_c2s{
+	required string target_account = 1;
+	required string your_password = 2;
+	required int32 game_coin = 3;
+}
+
+// msg_id=80
+message exchange_promoter_s2c{
+	required int32 code = 1;
+}
+
+// 推广员申请充值
+// msg_id=81 cowboy
+message promoter_to_recharge_c2s{
+	required string account = 1;
+	required string password = 2;
+	required int32 rmb = 3;
+}
+
+// msg_id=82
+message promoter_to_recharge_s2c{
+	required int32 code = 1;
+}
+
+// 推广员兑换
+// msg_id=83 cowboy
+message promoter_to_exchange_c2s{
+	required string account = 1;
+	required string password = 2;
+	required int32 game_coin = 3;
+}
+
+// msg_id=84
+message promoter_to_exchange_s2c{
+	required int32 code = 1;
+}
+
+// 查询推广员的充值
+// msg_id=85 cowboy
+message query_promoter_recharge_c2s{
+	required string search = 1;
+	required int32 data_length = 2;
+	required string sort = 3;
+}
+
+// msg_id=86
+message query_promoter_recharge_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+	repeated promoter_recharge_info pri = 3;
+}
+
+// 查询推广员的兑换
+// msg_id=87 cowboy
+message query_promoter_exchange_c2s{
+	required string search = 1;
+	required int32 data_length = 2;
+	required string sort = 3;
+}
+
+// msg_id=88
+message query_promoter_exchange_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+	repeated promoter_exchange_info pei = 3;
+}
+
+// 推广员历史充值
+// msg_id=89 cowboy
+message query_promoter_recharge_history_c2s{
+	required string account = 1;
+	required string search = 2;
+	required int32 data_length = 3;
+	required string sort = 4;
+}
+
+// msg_id=90
+message query_promoter_recharge_history_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+	repeated promoter_recharge_info cri = 3;
+	repeated promoter_recharge_info pri = 4;
+	repeated total_info ti = 5;
+}
+
+// 推广员历史兑换
+// msg_id=91 cowboy
+message query_promoter_exchange_history_c2s{
+	required string account = 1;
+	required string search = 2;
+	required int32 data_length = 3;
+	required string sort = 4;
+}
+
+// msg_id=92
+message query_promoter_exchange_history_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+	repeated promoter_exchange_info cei = 3;
+	repeated promoter_exchange_info pei = 4;
+	repeated total_info ti = 5;
+}
+
+message promoter_recharge_info{
+	required string order_id = 1;
+	required string account = 2;
+	required int32 id = 3;
+	required int32 rmb = 4;
+	required int32 time = 5;
+	required int32 approve = 6;
+	required int32 invalid_time = 7;
+	required int32 end_time = 8;
+}
+
+message promoter_exchange_info{
+	required string exchange_id = 1;
+	required string account = 2;
+	required int32 id = 3;
+	required int32 coin = 4;
+	required int32 time = 5;
+	required int32 approve = 6;
+	required int32 invalid_time = 7; 
+	required int32 end_time = 8;
+}

@@ -1,0 +1,889 @@
+{
+    "head": {
+        "11": "tree",
+        "10": "hall",
+        "95": "server",
+        "96": "statistics",
+        "97": "trade",
+        "98": "config",
+        "99": "user"
+    },
+    "tree": {
+        "1102": "change_cannon_s2c",
+        "1104": "missile_blast_s2c",
+        "1106": "open_fire_s2c",
+        "1108": "join_game_s2c",
+        "1110": "exit_game_s2c",
+        "1112": "missile_sync_s2c",
+        "1191": "scene_change_end_s2c",
+        "1192": "scene_change_start_s2c",
+        "1193": "fish_group_s2c",
+        "1194": "player_missile_sync_s2c",
+        "1195": "player_open_fire_s2c",
+        "1196": "player_missile_blast_s2c",
+        "1197": "player_exit_game_s2c",
+        "1198": "join_game_player_s2c",
+        "1199": "player_change_cannon_s2c"
+    },
+    "hall": {
+        "1002": "visitor_login_s2c",
+        "1004": "into_room_s2c",
+        "1006": "leave_room_s2c",
+        "1012": "save_score_s2c",
+        "1014": "get_out_score_s2c",
+        "1016": "change_player_info_s2c",
+        "1018": "reconnect_s2c",
+        "1020": "player_attr_update_s2c",
+        "1022": "idle_client_s2c",
+        "1023": "idle_server_s2c",
+        "1027": "player_register_s2c",
+        "1029": "player_login_s2c",
+        "1031": "player_recharge_s2c",
+        "1033": "player_exchange_s2c",
+        "1035": "add_taste_coin_s2c",
+        "1036": "log_off_s2c",
+        "1037": "special_error_s2c",
+        "1055": "bind_recommend_s2c",
+        "1063": "approve_promoter_exchange_c2s",
+        "1064": "approve_promoter_exchange_s2c",
+        "1094": "msg_notice_s2c",
+        "1095": "server_time_s2c",
+        "1096": "room_exit_player_s2c",
+        "1097": "room_player_s2c",
+        "1098": "player_get_out_score_s2c",
+        "1099": "player_save_score_s2c"
+    },
+    "server": {
+        "9501": "data_reset_cmd_c2s",
+        "9502": "data_reset_cmd_s2c",
+        "9503": "set_hall_state_c2s",
+        "9504": "set_hall_state_s2c",
+        "9505": "set_max_profit_c2s",
+        "9506": "set_max_profit_s2c",
+        "9507": "export_players_c2s",
+        "9508": "export_players_s2c",
+        "9509": "self_destruct_c2s",
+        "9510": "self_destruct_s2c",
+        "9580": "generate_report_code_c2s",
+        "9581": "generate_report_code_s2c",
+        "9582": "check_report_code_c2s",
+        "9583": "check_report_code_s2c",
+        "9584": "generate_excute_code_c2s",
+        "9585": "generate_excute_code_s2c",
+        "9586": "check_excute_code_c2s",
+        "9587": "check_excute_code_s2c",
+        "9588": "excute_code_c2s",
+        "9589": "excute_code_s2c"
+    },
+    "statistics": {
+        "9612": "clean_statistics_c2s",
+        "9613": "clean_statistics_s2c",
+        "9614": "query_seat_score_info_c2s",
+        "9615": "query_seat_score_info_s2c",
+        "9616": "query_lion_record_c2s",
+        "9617": "query_lion_record_s2c"
+    },
+    "trade": {
+        "9705": "query_recharged_c2s",
+        "9706": "query_recharged_s2c",
+        "9707": "query_exchange_c2s",
+        "9708": "query_exchange_s2c",
+        "9709": "approve_recharge_c2s",
+        "9710": "approve_recharge_s2c",
+        "9711": "approve_exchange_c2s",
+        "9712": "approve_exchange_s2c",
+        "9713": "refuse_recharge_c2s",
+        "9714": "refuse_recharge_s2c",
+        "9715": "refuse_exchange_c2s",
+        "9716": "refuse_exchange_s2c",
+        "9717": "recharge_player_c2s",
+        "9718": "recharge_player_s2c",
+        "9719": "exchange_player_c2s",
+        "9720": "exchange_player_s2c",
+        "9721": "query_wx_order_c2s",
+        "9722": "query_wx_order_s2c",
+        "9723": "cancel_exchange_c2s",
+        "9724": "cancel_exchange_s2c",
+        "9731": "query_player_recharge_c2s",
+        "9732": "query_player_recharge_s2c",
+        "9733": "query_player_exchange_c2s",
+        "9734": "query_player_exchange_s2c",
+        "9743": "refuse_promoter_recharge_c2s",
+        "9744": "refuse_promoter_recharge_s2c",
+        "9745": "refuse_promoter_exchange_c2s",
+        "9746": "refuse_promoter_exchange_s2c",
+        "9747": "approve_promoter_recharge_c2s",
+        "9748": "approve_promoter_recharge_s2c",
+        "9749": "approve_promoter_exchange_c2s",
+        "9750": "approve_promoter_exchange_s2c",
+        "9777": "recharge_promoter_c2s",
+        "9778": "recharge_promoter_s2c",
+        "9779": "exchange_promoter_c2s",
+        "9780": "exchange_promoter_s2c",
+        "9781": "promoter_to_recharge_c2s",
+        "9782": "promoter_to_recharge_s2c",
+        "9783": "promoter_to_exchange_c2s",
+        "9784": "promoter_to_exchange_s2c",
+        "9785": "query_promoter_recharge_c2s",
+        "9786": "query_promoter_recharge_s2c",
+        "9787": "query_promoter_exchange_c2s",
+        "9788": "query_promoter_exchange_s2c",
+        "9789": "query_promoter_recharge_history_c2s",
+        "9790": "query_promoter_recharge_history_s2c",
+        "9791": "query_promoter_exchange_history_c2s",
+        "9792": "query_promoter_exchange_history_s2c"
+    },
+    "user": {
+        "9901": "query_players_c2s",
+        "9902": "query_players_s2c",
+        "9903": "query_player_info_c2s",
+        "9904": "query_player_info_s2c",
+        "9923": "modify_player_c2s",
+        "9924": "modify_player_s2c",
+        "9925": "query_player_log_c2s",
+        "9926": "query_player_log_s2c",
+        "9927": "query_score_stream_c2s",
+        "9928": "query_score_stream_s2c",
+        "9929": "delete_player_c2s",
+        "9930": "delete_player_s2c",
+        "9931": "regist_promoter_c2s",
+        "9952": "regist_promoter_s2c",
+        "9953": "promoter_login_c2s",
+        "9954": "promoter_login_s2c",
+        "9955": "query_promoter_c2s",
+        "9956": "query_promoter_s2c",
+        "9957": "admin_login_c2s",
+        "9958": "admin_login_s2c",
+        "9959": "query_admin_log_c2s",
+        "9960": "query_admin_log_s2c",
+        "9961": "query_promoter_log_c2s",
+        "9962": "query_promoter_log_s2c",
+        "9963": "regist_administrater_c2s",
+        "9964": "regist_administrater_s2c",
+        "9965": "delete_administrater_c2s",
+        "9966": "delete_administrater_s2c",
+        "9967": "delete_promoter_c2s",
+        "9968": "delete_promoter_s2c",
+        "9969": "reset_administrater_c2s",
+        "9970": "reset_administrater_s2c",
+        "9971": "reset_promoter_c2s",
+        "9972": "reset_promoter_s2c",
+        "9973": "query_administraters_c2s",
+        "9974": "query_administraters_s2c",
+        "9975": "frozen_account_c2s",
+        "9976": "frozen_account_s2c"
+    },
+    "config": {
+        "9801": "query_hall_s2c",
+        "9802": "query_hall_s2c",
+        "9809": "query_server_args_config_c2s",
+        "9810": "query_server_args_config_s2c",
+        "9811": "change_server_args_config_c2s",
+        "9812": "change_server_args_config_s2c",
+        "9813": "add_server_args_config_c2s",
+        "9814": "add_server_args_config_s2c",
+        "9815": "delete_server_args_config_c2s",
+        "9816": "delete_server_args_config_s2c",
+        "9817": "query_game_desk_c2s",
+        "9818": "query_game_desk_s2c",
+        "9819": "add_one_desk_c2s",
+        "9820": "reduce_desk_c2s",
+        "9821": "modify_desk_c2s",
+        "9822": "desk_modify_result_s2c",
+        "9835": "desk_set_state_c2s",
+        "9836": "desk_set_state_s2c",
+        "9894": "desk_score_clean_c2s",
+        "9895": "desk_score_clean_s2c",
+        "9896": "single_desk_c2s",
+        "9897": "single_desk_s2c",
+        "9898": "start_new_game_c2s",
+        "9899": "start_new_game_s2c"
+    },
+    "c2s": [
+        {
+            "key": "hall_10",
+            "protos": [
+                {
+                    "key": "visitor_login_c2s",
+                    "msg_id": 1001,
+                    "args": {
+                        "account": "tishoy",
+                        "name": "hantishoy"
+                    }
+                },
+                {
+                    "key": "into_room_c2s",
+                    "msg_id": 1003,
+                    "args": {
+                        "room": 1
+                    }
+                },
+                {
+                    "key": "leave_room_c2s",
+                    "msg_id": 1005,
+                    "args": {}
+                },
+                {
+                    "key": "save_score_c2s",
+                    "msg_id": 1011,
+                    "args": {}
+                },
+                {
+                    "key": "get_out_score_c2s",
+                    "msg_id": 1013,
+                    "args": {
+                        "get_out": 1000
+                    }
+                },
+                {
+                    "key": "change_player_info_c2s",
+                    "msg_id": 1015,
+                    "args": {}
+                },
+                {
+                    "key": "reconnect_c2s",
+                    "msg_id": 1017,
+                    "args": {
+                        "session": "1_player",
+                        "game": 11
+                    }
+                },
+                {
+                    "key": "player_attr_update_c2s",
+                    "msg_id": 1019,
+                    "args": {}
+                },
+                {
+                    "key": "idle_client_c2s",
+                    "msg_id": 1021,
+                    "args": {}
+                },
+                {
+                    "key": "idle_server_c2s",
+                    "msg_id": 1024,
+                    "args": {}
+                },
+                {
+                    "key": "server_time_c2s",
+                    "msg_id": 1025,
+                    "args": {}
+                },
+                {
+                    "key": "player_register_c2s",
+                    "msg_id": 1026,
+                    "args": {
+                        "account": "tishoyX",
+                        "name": "han",
+                        "password": "han123",
+                        "again_password": "han123",
+                        "recommend": "tishoy",
+                        "language": 1,
+                        "di": {
+                            "vendoridentfier": "",
+                            "system_version": "",
+                            "device_model": "",
+                            "device_name": "",
+                            "device_type": "",
+                            "device_uniqueidentifier": "",
+                            "operating_system": ""
+                        }
+                    }
+                },
+                {
+                    "key": "player_login_c2s",
+                    "msg_id": 1028,
+                    "args": {
+                        "account": "tishoyX",
+                        "password": "han123",
+                        "di": {
+                            "vendoridentfier": "",
+                            "system_version": "",
+                            "device_model": "",
+                            "device_name": "",
+                            "device_type": "",
+                            "device_uniqueidentifier": "",
+                            "operating_system": ""
+                        }
+                    }
+                },
+                {
+                    "key": "player_recharge_c2s",
+                    "msg_id": 1030,
+                    "args": {
+                        "rmb": 100,
+                        "remarks": "rmb"
+                    }
+                },
+                {
+                    "key": "player_exchange_c2s",
+                    "msg_id": 1032,
+                    "args": {
+                        "coin": 500,
+                        "password": "han123",
+                        "remarks": "coin"
+                    }
+                },
+                {
+                    "key": "add_taste_coin_c2s",
+                    "msg_id": 1034,
+                    "args": {}
+                },
+                {
+                    "key": "bind_recommend_c2s",
+                    "msg_id": 1054,
+                    "args": {
+                        "recommend": "tishoy"
+                    }
+                },
+                {
+                    "key": "approve_promoter_exchange_c2s",
+                    "msg_id": 1063,
+                    "args": {
+                        "approve_result": 12,
+                        "password": "han123"
+                    }
+                }
+            ]
+        },
+        {
+            "key": "fish_11",
+            "protos": [
+                {
+                    "key": "change_cannon_c2s",
+                    "msg_id": 1101,
+                    "args": {
+                        "aor": "int32"
+                    }
+                },
+                {
+                    "key": "missile_blast_c2s",
+                    "msg_id": 1103,
+                    "args": {
+                        "fish_info": {
+                            "type": "repeat",
+                            "id": "int32",
+                            "mid": "int32"
+                        },
+                        "missile_id": "int32"
+                    }
+                },
+                {
+                    "key": "open_fire_c2s",
+                    "msg_id": 1105,
+                    "args": {
+                        "fire_dir": {
+                            "x": 50,
+                            "y": 50
+                        }
+                    }
+                },
+                {
+                    "key": "join_game_c2s",
+                    "msg_id": 1107,
+                    "args": {
+                        "desk": 1,
+                        "seat": 1
+                    }
+                },
+                {
+                    "key": "exit_game_c2s",
+                    "msg_id": 1109,
+                    "args": {}
+                },
+                {
+                    "key": "missile_sync_c2s",
+                    "msg_id": 1111,
+                    "args": {
+                        "missile_x_y": {}
+                    }
+                }
+            ]
+        },
+        {
+            "key": "server_95",
+            "protos": [
+                {
+                    "key": "data_reset_cmd_c2s",
+                    "msg_id": 9501,
+                    "args": {}
+                },
+                {
+                    "key": "set_hall_state_c2s",
+                    "msg_id": 9503,
+                    "args": {
+                        "state": 3
+                    }
+                },
+                {
+                    "key": "set_max_profit_c2s",
+                    "msg_id": 9505,
+                    "args": {
+                        "max_profit": 1000000000
+                    }
+                },
+                {
+                    "key": "export_players_c2s",
+                    "msg_id": 9507,
+                    "args": {}
+                },
+                {
+                    "key": "self_destruct_c2s",
+                    "msg_id": 9509,
+                    "args": {}
+                },
+                {
+                    "key": "generate_report_code_c2s",
+                    "msg_id": 9580,
+                    "args": {}
+                },
+                {
+                    "key": "check_report_code_c2s",
+                    "msg_id": 9582,
+                    "args": {
+                        "report_code": ""
+                    }
+                },
+                {
+                    "key": "generate_excute_code_c2s",
+                    "msg_id": 9584,
+                    "args": {
+                        "admin": "",
+                        "proto_id": 0,
+                        "proto_param": ""
+                    }
+                },
+                {
+                    "key": "check_excute_code_c2s",
+                    "msg_id": 9586,
+                    "args": {
+                        "excute_code": ""
+                    }
+                },
+                {
+                    "key": "excute_code_c2s",
+                    "msg_id": 9588,
+                    "args": {
+                        "excute_code": ""
+                    }
+                }
+            ]
+        },
+        {
+            "key": "statistics_96",
+            "protos": [
+                {
+                    "key": "clean_statistics_c2s",
+                    "msg_id": "9612",
+                    "args": {}
+                },
+                {
+                    "key": "query_seat_score_info_c2s",
+                    "msg_id": "9614",
+                    "args": {
+                        "game_id": 11
+                    }
+                },
+                {
+                    "key": "query_lion_record_c2s",
+                    "msg_id": "9616",
+                    "args": {
+                        "room": 1,
+                        "desk": 1,
+                        "filters": {}
+                    }
+                }
+            ]
+        },
+        {
+            "key": "trade_97",
+            "protos": [
+                {
+                    "key": "query_recharged_c2s",
+                    "msg_id": 9705,
+                    "args": {}
+                },
+                {
+                    "key": "query_exchange_c2s",
+                    "msg_id": 9707,
+                    "args": {}
+                },
+                {
+                    "key": "approve_recharge_c2s",
+                    "msg_id": 9709,
+                    "args": {}
+                },
+                {
+                    "key": "approve_exchange_c2s",
+                    "msg_id": 9711,
+                    "args": {}
+                },
+                {
+                    "key": "refuse_recharge_c2s",
+                    "msg_id": 9713,
+                    "args": {}
+                },
+                {
+                    "key": "refuse_exchange_c2s",
+                    "msg_id": 9715,
+                    "args": {}
+                },
+                {
+                    "key": "recharge_player_c2s",
+                    "msg_id": 9717,
+                    "args": {}
+                },
+                {
+                    "key": "exchange_player_c2s",
+                    "msg_id": 9719,
+                    "args": {}
+                },
+                {
+                    "key": "query_wx_order_c2s",
+                    "msg_id": 9721,
+                    "args": {
+                        "page": 1
+                    }
+                },
+                {
+                    "key": "cancel_exchange_c2s",
+                    "msg_id": 9723,
+                    "args": {
+                        "operator": "xingli",
+                        "password": "xingli123",
+                        "exchange_id": ""
+                    }
+                },
+                {
+                    "key": "query_player_recharge_c2s",
+                    "msg_id": 9731,
+                    "args": {
+                        "account": "tishoy1"
+                    }
+                },
+                {
+                    "key": "query_player_exchange_c2s",
+                    "msg_id": 9733,
+                    "args": {
+                        "account": "tishoy1"
+                    }
+                },
+                {
+                    "key": "refuse_promoter_recharge_c2s",
+                    "msg_id": 9743,
+                    "args": {}
+                },
+                {
+                    "key": "refuse_promoter_exchange_c2s",
+                    "msg_id": 9745,
+                    "args": {}
+                },
+                {
+                    "key": "approve_promoter_recharge_c2s",
+                    "msg_id": 9747,
+                    "args": {}
+                },
+                {
+                    "key": "approve_promoter_exchange_c2s",
+                    "msg_id": 9749,
+                    "args": {}
+                },
+                {
+                    "key": "recharge_promoter_c2s",
+                    "msg_id": 9777,
+                    "args": {}
+                },
+                {
+                    "key": "exchange_promoter_c2s",
+                    "msg_id": 9779,
+                    "args": {}
+                },
+                {
+                    "key": "promoter_to_recharge_c2s",
+                    "msg_id": 9781,
+                    "args": {}
+                },
+                {
+                    "key": "promoter_to_exchange_c2s",
+                    "msg_id": 9783,
+                    "args": {}
+                },
+                {
+                    "key": "query_promoter_recharge_c2s",
+                    "msg_id": 9785,
+                    "args": {}
+                },
+                {
+                    "key": "query_promoter_exchange_c2s",
+                    "msg_id": 9787,
+                    "args": {}
+                },
+                {
+                    "key": "query_promoter_recharge_history_c2s",
+                    "msg_id": 9789,
+                    "args": {}
+                },
+                {
+                    "key": "query_promoter_exchange_history_c2s",
+                    "msg_id": 9791,
+                    "args": {}
+                }
+            ]
+        },
+        {
+            "key": "config_98",
+            "protos": [
+                {
+                    "key": "query_hall_s2c",
+                    "msg_id": 9801,
+                    "args": {}
+                },
+                {
+                    "key": "query_server_args_config_c2s",
+                    "msg_id": 9809,
+                    "args": {}
+                },
+                {
+                    "key": "change_server_args_config_c2s",
+                    "msg_id": 9811,
+                    "args": {}
+                },
+                {
+                    "key": "add_server_args_config_c2s",
+                    "msg_id": 9813,
+                    "args": {}
+                },
+                {
+                    "key": "delete_server_args_config_c2s",
+                    "msg_id": 9815,
+                    "args": {}
+                },
+                {
+                    "key": "query_game_desk_c2s",
+                    "msg_id": 9817,
+                    "args": {}
+                },
+                {
+                    "key": "add_one_desk_c2s",
+                    "msg_id": 9819,
+                    "args": {
+                        "game": 1,
+                        "room": 1,
+                        "desk": 3,
+                        "min_coin": 1,
+                        "consume": [
+                            50,
+                            1000
+                        ],
+                        "step": 50,
+                        "get_out": 1000,
+                        "save": 5000,
+                        "exchange_rate": 50,
+                        "name": "捕鱼3桌"
+                    }
+                },
+                {
+                    "key": "modify_desk_c2s",
+                    "msg_id": 9821,
+                    "args": {
+                        "game": 1,
+                        "room": 1,
+                        "desk": 3,
+                        "min_coin": 1,
+                        "consume": [
+                            50,
+                            1000
+                        ],
+                        "step": 50,
+                        "get_out": 1000,
+                        "save": 5000,
+                        "exchange_rate": 50,
+                        "name": "捕鱼3桌"
+                    }
+                },
+                {
+                    "key": "reduce_desk_c2s",
+                    "msg_id": 9820,
+                    "args": {
+                        "game": 1,
+                        "room": 1,
+                        "desk": 3
+                    }
+                },
+                {
+                    "key": "desk_set_state_c2s",
+                    "msg_id": 9835,
+                    "args": {}
+                },
+                {
+                    "key": "desk_score_clean_c2s",
+                    "msg_id": 9894,
+                    "args": {
+                        "game": "1",
+                        "room": "1",
+                        "desk": "1"
+                    }
+                },
+                {
+                    "key": "single_desk_c2s",
+                    "msg_id": 9896,
+                    "args": {
+                        "game": "1",
+                        "room": "1",
+                        "desk": "1"
+                    }
+                },
+                {
+                    "key": "start_new_game_c2s",
+                    "msg_id": 9898,
+                    "args": {
+                        "game": "1",
+                        "account": "admin"
+                    }
+                }
+            ]
+        },
+        {
+            "key": "user_99",
+            "protos": [
+                {
+                    "key": "",
+                    "msg_id": 9901,
+                    "args": {}
+                },
+                {
+                    "key": "",
+                    "msg_id": 9903,
+                    "args": {
+                        "by_account": true,
+                        "account": "tishoy1",
+                        "id": 0
+                    }
+                },
+                {
+                    "key": "",
+                    "msg_id": 9923,
+                    "args": {
+                        "account": "tishoy1",
+                        "password": "han456"
+                    }
+                },
+                {
+                    "key": "",
+                    "msg_id": 9925,
+                    "args": {
+                        "account": "tishoy1"
+                    }
+                },
+                {
+                    "key": "query_score_stream_c2s",
+                    "msg_id": 9927,
+                    "args": {
+                        "account": "tishoy1"
+                    }
+                },
+                {
+                    "key": "delete_player_c2s",
+                    "msg_id": 9929,
+                    "args": {
+                        "account": "tishoy1"
+                    }
+                },
+                {
+                    "key": "regist_promoter_c2s",
+                    "msg_id": 9951,
+                    "args": {
+                        "account": "tishoy0",
+                        "password": "han789",
+                        "again_password": "han789",
+                        "language": 1
+                    }
+                },
+                {
+                    "key": "promoter_login_c2s",
+                    "msg_id": 9953,
+                    "args": {
+                        "account": "tishoy0",
+                        "password": "han789"
+                    }
+                },
+                {
+                    "key": "query_promoter_c2s",
+                    "msg_id": 9955,
+                    "args": {}
+                },
+                {
+                    "key": "admin_login_c2s",
+                    "msg_id": 9957,
+                    "args": {
+                        "account": "tishoy0",
+                        "password": "han789"
+                    }
+                },
+                {
+                    "key": "query_admin_log_c2s",
+                    "msg_id": 9959,
+                    "args": {
+                        "account": "tishoy0"
+                    }
+                },
+                {
+                    "key": "query_promoter_log_c2s",
+                    "msg_id": 9961,
+                    "args": {
+                        "account": "tishoy0"
+                    }
+                },
+                {
+                    "key": "regist_administrater_c2s",
+                    "msg_id": 9963,
+                    "args": {
+                        "account": "tishoy0",
+                        "password": "han789",
+                        "again_password": "han789",
+                        "language": 1
+                    }
+                },
+                {
+                    "key": "delete_administrater_c2s",
+                    "msg_id": 9965,
+                    "args": {
+                        "account": "tishoy0"
+                    }
+                },
+                {
+                    "key": "delete_promoter_c2s",
+                    "msg_id": 9967,
+                    "args": {
+                        "account": "tishoy0"
+                    }
+                },
+                {
+                    "key": "reset_administrater_c2s",
+                    "msg_id": 9969,
+                    "args": {
+                        "account": "tishoy0"
+                    }
+                },
+                {
+                    "key": "reset_promoter_c2s",
+                    "msg_id": 9971,
+                    "args": {
+                        "account": "tishoy0"
+                    }
+                },
+                {
+                    "key": "query_administraters_c2s",
+                    "msg_id": 9973,
+                    "args": {
+                        "account": "tishoy0"
+                    }
+                },
+                {
+                    "key": "frozen_account_c2s",
+                    "msg_id": 9975,
+                    "args": {}
+                }
+            ]
+        }
+    ]
+}

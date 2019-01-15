@@ -1,0 +1,342 @@
+// start desk
+// module type lion
+
+// 加入游戏
+// msg_id=01
+message join_lion_c2s{
+	required int32 desk = 1;
+	required int32 seat	= 2;							// 位置
+}
+
+// msg_id=02
+message join_lion_s2c{
+	required int32 code = 1;
+	repeated other_info oi = 2;
+	repeated result_info ri = 3;						// 开奖结果(长度为一)
+	repeated dial_info di = 4;							// 转盘信息
+}
+
+message other_info{
+	required int32 id = 1;
+	required string name = 2;
+	required int32 seat = 3;
+	required int32 level = 4;
+	required int32 sex = 5;
+	required int32 head_portrait = 6;               // 头像
+}
+
+// 其他玩家加入游戏（广播）
+// msg_id=03
+message other_join_lion_s2c{
+	required int32 code = 1;
+	repeated other_info oi = 2;
+}
+
+// 庄和闲押注
+// msg_id=04
+message zhx_stake_c2s{
+	required int32 type = 1;						// 庄,1;和,2;闲,3
+	required int32 chip = 2;						// 筹码类型
+}
+
+// msg_id=05
+message zhx_stake_s2c{
+	required int32 code = 1;
+	repeated zhx_all_stake_info zasi = 2;
+}
+
+message zhx_all_stake_info{
+	required int32 type = 1;						// 庄,1;和,2;闲,3
+	required int32 self_stake = 2;					// 自身押注
+	required int32 total_stake = 3;					// 总押注
+}
+
+// 庄和闲总押注（广播）
+// msg_id=06
+message zhx_total_stake_s2c{
+	required int32 code = 1;
+	repeated zhx_stake_simple_info zssi = 2;
+}
+
+message zhx_stake_simple_info{
+	required int32 type = 1;
+	required int32 total_stake = 2;
+}
+
+// 退出游戏
+// msg_id=07
+message exit_game_c2s{
+}
+
+// msg_id=08
+message exit_game_s2c{
+	required int32 code = 1;
+}
+
+// 退出游戏(广播)
+// msg_id=09
+message player_exit_game_s2c{
+	required int32 code = 1;
+	required int32 id = 2;
+}
+
+// 开启自动押注
+// msg_id=10
+message open_automatic_stake_c2s{
+}
+
+// msg_id=11
+message open_automatic_stake_s2c{
+	required int32 code = 1;
+}
+
+// 关闭自动押注
+// msg_id=12
+message close_automatic_stake_c2s{
+}
+
+// msg_id=13
+message close_automatic_stake_s2c{
+	required int32 code = 1;
+}
+
+// 动物押注
+// msg_id=14
+message animal_stake_c2s{
+	required int32 animal = 1;
+	required int32 color = 2;
+	required int32 chip = 3;
+}
+
+// msg_id=15
+message animal_stake_s2c{
+	required int32 code = 1;
+	repeated animal_all_stake_info aasi = 2;
+}
+
+message animal_all_stake_info{
+	required int32 animal = 1;
+	required int32 color = 2;
+	required int32 self_stake = 3;					// 自身押注
+	required int32 total_stake = 4;					// 总押注
+}
+
+// 动物总押注（广播）
+// msg_id=16
+message animal_total_stake_s2c{
+	required int32 code = 1;
+	repeated animal_simple_stake_info assi = 2;
+}
+
+message animal_simple_stake_info{
+	required int32 animal = 1;
+	required int32 color = 2;
+	required int32 total_stake = 3;					// 总押注
+}
+
+// 所有押注信息（加入游戏时为押注期间推送客户端）
+// msg_id=17
+message all_stake_info_s2c{
+	required int32 code = 1;
+	required uint32 remain_time = 2;					// 剩余时间 毫秒
+	repeated zhx_stake_info zsi = 3;					// 庄和闲
+	repeated animal_stake_info asi = 4;					// 动物押注
+}
+
+message result_info{
+	required int32 type = 1;							// 开奖结果类型
+	required int32 zhx = 2;
+	repeated animal_color_pos_info acpi = 3;
+}
+
+message animal_color_pos_info{
+	required int32 animal = 1;
+	required int32 a_pos = 2;
+	required int32 color = 3;
+	required int32 c_pos = 4;
+}
+
+message dial_info{
+	repeated animal_pos_info api = 1;						// 动物位置
+	repeated color_pos_info cpi = 2;						// 颜色位置
+}
+
+message animal_pos_info{
+	required int32 animal = 1;
+	required int32 pos = 2;
+}
+
+message color_pos_info{
+	required int32 color = 1;
+	required int32 pos = 2;
+}
+
+message zhx_stake_info{
+	required int32 type = 1;						// 庄,1;和,2;闲,3
+	required int32 rate = 2;						// 倍率
+	required int32 self_stake = 3;					// 自身押注
+	required int32 total_stake = 4;					// 总押注
+}
+
+message animal_stake_info{
+	required int32 animal = 1;
+	required int32 color = 2;
+	required int32 rate = 3;
+	required int32 self_stake = 4;
+	required int32 total_stake = 5;
+}
+
+// 所有押注信息（广播，每局开始时推送客户端）
+// msg_id=18
+message stake_info_s2c{
+	required int32 code = 1;
+	required int32 remain_time = 2;						// 剩余时间 毫秒
+	repeated color_pos_info cpi = 3;
+	repeated zhx_stake_info zsi = 4;					// 庄和闲
+	repeated animal_stake_info asi = 5;					// 动物押注
+}
+
+// 本轮结果 TODO
+// msg_id=19
+message this_result_s2c{
+	required int32 code = 1;
+	repeated result_info ri = 2;						// 长度为一
+}
+
+// 进入房间
+// msg_id=20
+message into_lion_room_c2s{
+	required int32 room = 1;
+}
+
+// msg_id=21
+message into_lion_room_s2c{
+	required int32 code = 1;
+	required int32 room = 2;
+	repeated lion_desk_info ldi = 3;
+}
+
+message lion_desk_info{
+    required int32 desk = 1;                    		// 桌号
+	required int32 min_coin = 2;						// 最小携带币值
+    required int32 min_stake = 3;                		// 动物最小押注
+	required int32 max_stake = 4;						// 动物最大押注
+	required int32 zhx_min_stake = 5;					// 庄和闲最小押注
+	required int32 zhx_max_stake = 6;					// 庄和闲最大押注
+    required int32 exchange_rate = 7;           		// 汇率
+    repeated int32 chips = 8;      						// 筹码
+    required string name = 9;                   		// 桌名
+    required int32 sort = 10;                    		// 排序id
+    required int32 get_out = 11;                 		// 一次取出
+    required int32 save = 12;                   		// 一次存入
+    repeated lion_desk_player_info ldpi = 13;         	// 已经加入游戏玩家信息
+}
+
+message lion_desk_player_info{
+    required int32 id = 1;
+    required int32 seat = 2;
+    required int32 head_portrait = 3;
+    required int32 sex = 4;
+    required int32 level = 5;
+    required string name = 6;
+}
+
+// 续押
+// msg_id=22
+message continue_stake_c2s{
+	repeated c_a_stake_info casi = 1;
+	repeated c_z_stake_info czsi = 2;
+}
+
+message c_a_stake_info{
+	required int32 animal = 1;
+	required int32 color = 2;
+	required int32 score = 3;
+}
+
+message c_z_stake_info{
+	required int32 type = 1;
+	required int32 score = 2;
+}
+
+// msg_id=23
+message continue_stake_s2c{
+	required int32 code = 1;
+	repeated animal_all_stake_info aasi = 2;
+	repeated zhx_all_stake_info zasi = 3;
+}
+
+// 押注信息(广播)
+// msg_id=24
+message animal_zhx_total_stake_s2c{
+	required int32 code = 1;
+	repeated animal_simple_stake_info assi = 2;
+	repeated zhx_stake_simple_info zssi = 3;
+}
+
+// 取消押注
+// msg_id=25
+message cancel_stake_c2s{
+}
+
+// msg_id=26
+message cancel_stake_s2c{
+	required int32 code = 1;
+	repeated animal_all_stake_info aasi = 2;
+	repeated zhx_all_stake_info zasi = 3;
+}
+
+// 分数结算
+// msg_id=27
+message balance_score_s2c{
+	required int32 code = 1;
+	repeated balance_score_info bsi = 2;
+}
+
+message balance_score_info{
+	required int32 seat = 1;
+	required int32 change_score = 2;
+	required int32 win_score = 3;
+}
+
+// 历史开奖记录
+// msg_id=28
+message history_result_c2s{
+}
+
+// msg_id=29
+message history_result_s2c{
+	required int32 code = 1;
+	repeated history_result_info hri = 2;
+}
+
+message history_result_info{
+	required int32 innings = 1;
+	repeated result_info ri = 2;					// 长度为一
+}
+
+// 切后台后返回游戏
+// msg_id=30 cowboy
+message recome_lion_game_c2s{
+    required string session = 1;
+}
+
+// msg_id=31
+message recome_lion_game_s2c{
+    required int32 code = 1;
+    required int32 score = 2;
+    repeated other_info oi = 3;
+	repeated result_info ri = 4;						// 开奖结果(长度为一)
+	repeated dial_info di = 5;							// 转盘信息
+}
+
+// 中断返回房间
+// msg_id=32 cowboy
+message recome_lion_room_c2s{
+    required string session = 1;
+}
+
+// msg_id=33
+message recome_lion_room_s2c{
+    required int32 code = 1;
+}

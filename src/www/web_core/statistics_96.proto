@@ -1,0 +1,235 @@
+//后台统计相关协议
+//大厅总玩总得
+// msg_id=01 cowboy
+message get_hall_score_c2s{
+
+}
+
+// msg_id=02
+message get_hall_score_s2c{
+	required int32 code = 1;
+	repeated hall_score_info hsi = 2;
+}
+
+message hall_score_info{
+    required int32 type = 1;
+	required uint64 total_stake = 2;
+	required uint64 total_win = 3;
+	required uint64 total_recharge = 4;
+	required uint64 total_exchange = 5;
+	required uint64 total_given = 6;
+	required uint64 total_confiscated = 7;
+	required uint64 total_return = 8;
+	required double total_unreturn = 9;
+	required uint64 total_draw = 10;
+}
+
+//总玩家
+// msg_id=03 cowboy
+message query_player_statistics_c2s{
+
+}
+
+// msg_id=04
+message query_player_statistics_s2c{
+    required int32 code = 1;
+	required int32 count = 2;
+    required int32 online = 3;   
+}
+
+// 桌子分数
+// msg_id=05 cowboy
+message query_desk_score_info_c2s{
+	required int32 game_id = 1;
+}
+
+// msg_id=06
+message query_desk_score_info_s2c{
+	required int32 code = 1;
+	repeated desk_score_info dsi = 2;
+}
+
+message desk_score_info{
+	required int32 game = 1;
+	required int32 room = 2;
+	required int32 desk = 3;
+	required uint64 total_stake = 4;
+	required uint64 total_win = 5;
+}
+
+// msg_id=07 cowboy
+message query_promoter_statistics_c2s{
+	required string filters = 1;
+}
+
+// msg_id=08 
+message query_promoter_statistics_s2c{
+	required int32 code = 1;
+	repeated promoter_statistics_info psi = 2;
+}
+
+message promoter_statistics_info{
+	required int32 id = 1;
+	required int32 time = 2;
+	required int32 game = 3;
+	required int64 daily_stake = 4;
+	required int64 daily_win = 5;
+	required string account = 6;
+}
+
+// msg_id=09 cowboy
+message query_retention_player_statistics_c2s{
+	required string filters = 1;
+}
+
+// msg_id=10
+message query_retention_player_statistics_s2c{
+	required int32 code = 1;
+	repeated retention_statistics_info rsi = 2;
+}
+
+message retention_statistics_info{
+	required int32 regist = 1;
+	required int32 last_day = 2;
+	required int32 second_day = 3;
+	required int32 third_day = 4;
+	required int32 forth_day = 5;
+	required int32 fifth_day = 6;
+	required int32 sixth_day = 7;
+	required int32 svnth_day = 8;
+	required int32 fourteenth_day = 9;
+	required int32 thirtieth_day = 10;
+	required int32 alive = 11;
+	required int32 time = 12;
+}
+
+// msg_id=11 cowboy
+message query_promoter_total_statistics_c2s{
+	required string account = 1;
+	required string filters = 2;
+}
+
+// msg_id=12 cowboy
+message clean_statistics_c2s{
+
+}
+
+// msg_id=13
+message clean_statistics_s2c{
+	required int32 code = 1;
+}
+
+// msg_id=14 cowboy
+message query_seat_score_info_c2s{
+	required int32 game_id = 1;
+}
+
+// msg_id=15
+message query_seat_score_info_s2c{
+	required int32 code = 1;
+	repeated seat_score_info ssi = 2;
+}
+
+message seat_score_info{
+	required int32 game = 1;
+	required int32 room = 2;
+	required int32 desk = 3;
+	required int32 seat = 4;
+	repeated uint64 seat_stake = 5;
+	repeated uint64 seat_win = 6;
+}
+
+// msg_id=16 cowboy
+message query_lion_record_c2s{
+	required string filters = 1;
+	required int32 room = 2;
+	required int32 desk = 3;
+	required int32 data_length = 4;
+}
+
+// msg_id=17
+message query_lion_record_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+	repeated lion_record_info lri = 3;
+}
+
+message lion_record_info{
+	required int32 innings = 1;
+	repeated zhx_stake zhx_stake = 2;
+	repeated result_info result = 3;
+	repeated animal_stake animal_stake = 4;
+	required int32 zhx_result = 5;
+	repeated int32 special = 6;
+	repeated int32 type = 7;
+	required int32 time = 8;
+	repeated rate_info animal_rate = 9;
+	required int32 bonus = 10;
+	repeated player_win pw = 11;
+}
+
+message zhx_stake{
+	required int32 id = 1;
+	required int32 seat = 2;
+	repeated zhx_info stake = 3;
+}
+
+message animal_stake{
+	required int32 id = 1;
+	required int32 seat = 2;
+	repeated animal_info stake = 3;
+}
+
+message result_info{
+	required int32 animal = 1;
+	required int32 color = 2;
+}
+
+message zhx_info{
+	required int32 zhx = 1;
+	required int32 rate = 2;
+	required int32 score = 3;
+}
+
+message animal_info{
+	required result_info animal = 1;
+	required int32 rate = 2;
+	required int32 score = 3;
+}
+
+message rate_info{
+	required int32 animal = 1;
+	required int32 color = 2;
+	required int32 rate = 3;
+}
+
+message player_win{
+	required int32 id = 1;
+	required int64 win = 2;
+}
+
+// msg_id=18 cowboy
+message get_pre_result_c2s{
+	required int32 game = 1;
+	required int32 room = 2;
+	required int32 desk = 3;
+}
+
+// msg_id=19
+message get_pre_result_s2c{
+	required int32 code = 1;
+	required int32 result = 2;
+}
+
+// msg_id=20 cowboy
+message set_pre_result_c2s{
+	required int32 game = 1;
+	required int32 room = 2;
+	required int32 desk = 3;
+	required int32 result = 4;
+}
+
+// msg_id=21
+message set_pre_result_s2c{
+	required int32 code = 1;
+}

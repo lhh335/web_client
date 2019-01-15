@@ -1,0 +1,146 @@
+//服务器相关协议
+//服务器mongo 数据重启
+// msg_id=01 cowboy
+message data_reset_cmd_c2s{
+   
+}
+
+// msg_id=02
+message data_reset_cmd_s2c{
+    required int32 code = 1;
+}
+
+// msg_id=03 cowboy
+message set_hall_state_c2s{
+    required int32 state = 1;
+}
+
+// msg_id=04
+message set_hall_state_s2c{
+    required int32 code = 1;
+}
+
+// msg_id=05 cowboy
+message set_max_profit_c2s{
+    required int64 max_profit = 1;
+}
+
+// msg_id=06
+message set_max_profit_s2c{
+    required int32 code = 1;
+}
+
+// msg_id=07 cowboy
+message export_players_c2s{
+
+}
+
+// msg_id=08
+message export_players_s2c{
+    required int32 code = 1;
+    repeated row_info rows = 2;
+}
+
+message row_info{
+	required string account = 1;
+    required int32 id = 2;
+    required int32 taste_coin = 3;		// 体验币
+	required int32 game_coin = 4;		// 游戏币
+	required string name = 5;			// 昵称
+	required int32 head_portrait = 6;	// 头像
+	required int32 sex = 7;				// 性别（0，女；1,男）
+	required int32 level = 8;
+	required int32 status = 9;
+    required string password = 10;
+	required string recommend = 11;		//推荐人
+    required int32 language = 12;
+	required int32 kind = 13;
+	required string vendoridentfier = 14;
+    required string system_version = 15;
+    required string device_model = 16;
+    required string device_name = 17;
+    required string device_uniqueidentifier = 18;
+    required string operating_system = 19;
+	required int32 login_time = 20;
+	required string session = 21;
+	required string refresh_token = 22;
+	required int32 log_game_coin = 23;
+	required int32 log_taste_coin = 24;
+	required int32 vertify = 25;
+	required string mobile_phone = 26;
+	repeated int32 close = 27;
+}
+
+// msg_id=09 cowboy
+message self_destruct_c2s{
+
+}
+
+// msg_id=10
+message self_destruct_s2c{
+    required int32 code = 1;
+}
+
+// msg_id=11 cowboy
+message change_fish_factor_c2s{
+    required fish_factor_info ffi = 1;
+}
+
+// msg_id=12
+message change_fish_factor_s2c{
+    required int32 code = 1;
+}
+
+// msg_id=13 cowboy
+message query_fish_factor_c2s{
+    required int32 game = 1;
+    required int32 room = 2;
+    required int32 desk = 3;
+}
+
+// msg_id=14
+message query_fish_factor_s2c{
+    required int32 code = 1;
+    repeated fish_factor_info ffi = 2;
+}
+
+message fish_factor_info{
+    required int32 game = 1;
+    required int32 room = 2;
+    required int32 desk = 3;
+    required int32 seat = 4;
+    required float factor = 5;
+}
+
+// msg_id=15 cowboy
+message data_clean_cmd_c2s{
+
+}
+
+// msg_id=16 cowboy
+message data_clean_cmd_s2c{
+    required int32 code = 1;
+}
+
+// msg_id=17 cowboy
+message config_reset_cmd_c2s{
+
+}
+
+// msg_id=18 cowboy
+message config_reset_cmd_s2c{
+    required int32 code = 1;
+}
+
+// msg_id=98 cowboy
+message get_vender_auth_c2s{
+
+}
+
+// msg_id=99
+message get_vender_auth_s2c{
+    required int32 code = 1;
+    required string auth = 2;
+//    required bytes auth = 2;
+}
+

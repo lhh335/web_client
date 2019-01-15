@@ -1,0 +1,724 @@
+//后台配置相关协议
+//大厅配置信息
+// msg_id=01 cowboy 
+message query_hall_c2s{
+	//required int32 page = 1;
+}
+
+// msg_id=02
+message query_hall_s2c{
+	required int32 code = 1;
+    repeated hall_info hi = 2;
+}
+
+message hall_info{
+	required string activity_name = 1;
+    required string app_protoid = 2;
+    required string app_version = 3;
+    required string download = 4;
+    required int32 id = 5;
+    required string package_name = 6;
+    required int32 terminal = 7;
+	required string hotupdate_url = 8;
+	required string sort_id = 9;
+}
+
+// msg_id=03 cowboy
+message change_hall_config_c2s{
+	required string activity_name = 1;
+    required string app_protoid = 2;
+    required string app_version = 3;
+    required string download = 4;
+    required int32 id = 5;
+    required string package_name = 6;
+    required int32 terminal = 7;
+	required string hotupdate_url = 8;
+	required string sort_id = 9;
+}
+
+// msg_id=04
+message change_hall_config_s2c{
+    required int32 code = 1;
+}
+
+// msg_id=05 cowboy
+message add_hall_config_c2s{
+	required string activity_name = 1;
+    required string app_protoid = 2;
+    required string app_version = 3;
+    required string download = 4;
+    required int32 id = 5;
+    required string package_name = 6;
+    required int32 terminal = 7;
+	required string hotupdate_url = 8;
+	required string sort_id = 9;
+}
+
+// msg_id=06
+message add_hall_config_s2c{
+	required int32 code = 1;
+}
+
+// msg_id=07 cowboy
+message delete_hall_config_c2s{
+	required int32 id = 1;
+	required int32 terminal = 2;
+}
+
+// msg_id=08
+message delete_hall_config_s2c{
+	required int32 code = 1;
+}
+
+// msg_id=09 cowboy
+message query_server_args_config_c2s{
+	//required int32 page = 1;
+}
+
+// msg_id=10
+message query_server_args_config_s2c{
+	required int32 code = 1;
+    repeated string sai = 2;
+}
+
+message server_args_info{
+    required int32 k = 1;
+    required string v = 2;
+	required int32 t = 3;
+}
+
+// 修改服务器参数
+// msg_id=11 cowboy
+message change_server_args_config_c2s{
+	required string target_key = 1;
+	required string new_key = 2;
+	required string new_value = 3;
+}
+
+// msg_id=12
+message change_server_args_config_s2c{
+	required int32 code = 1;
+}
+
+// 新增服务器参数
+// msg_id=13 cowboy
+message add_server_args_config_c2s{
+	required string new_key = 1;
+	required string new_value = 2;
+	required string new_type = 3;
+}
+
+// msg_id=14
+message add_server_args_config_s2c{
+	required int32 code = 1;
+}
+
+//删除服务器参数
+// msg_id=15 cowboy
+message delete_server_args_config_c2s{
+	required string target_key = 1;
+}
+
+// msg_id=16
+message delete_server_args_config_s2c{
+	required int32 code = 1;
+}
+
+//查询大厅
+// msg_id=17 cowboy hall_10_pb
+message query_game_desk_c2s{
+	required int32 game_id = 1;
+}
+
+// msg_id=18
+message query_fish_desk_s2c{
+	required int32 code = 1;
+	required int32 room1 = 2;
+	required int32 room2 = 3;
+	repeated fish_desk_info di = 4;
+}
+
+message fish_desk_info{
+	required int32 game = 1;
+	required int32 room = 2;
+	required int32 desk = 3;				
+	required int32 min_coin = 4;			
+	repeated int32 consume = 5;		
+	required int32 step = 6;	
+	required int32 get_out = 7;		
+	required int32 save = 8;	
+	required int32 exchange_rate = 9;		
+	required string name = 10;	
+	required int32 sort = 11;
+	required int32 state = 12;				
+	required uint64 total_stake = 13;			// 总押分
+	required uint64 total_win = 14;				// 总得
+	repeated desk_player_info dpi = 15;
+	required int32 game_df = 16;
+	required int32 hall_type = 17;
+	required uint64 draw = 18;
+	required uint64 pour = 19;
+}
+
+message lion_desk_info{
+	required int32 game = 1;
+	required int32 room = 2;
+	required int32 desk = 3;				
+	required int32 min_coin = 4;			
+	required int32 get_out = 5;		
+	required int32 save = 6;	
+	required int32 exchange_rate = 7;		
+	required string name = 8;	
+	required int32 sort = 9;
+	required int32 stake_time = 10;
+	required int32 min_stake = 11;
+	required int32 max_stake = 12;
+	required int32 animal_rate_type = 13;
+	required int32 animal_rate_table_type = 14;
+	repeated int32 chip = 15;
+	repeated int32 zhx_rate = 16;
+	required int32 state = 17;				
+	required uint64 animal_stake = 18;			// 总押分
+	required uint64 animal_win = 19;				// 总得
+	repeated desk_player_info dpi = 20;
+	repeated int32 bank = 21;
+	repeated int32 tie = 22;
+	repeated int32 play = 23;
+	required int32 game_df = 24;
+	required int32 hall_type = 25;
+	required int32 zhx_game_df = 26;
+	required uint64 zhx_stake = 27;
+	required uint64 zhx_win = 28;
+	required uint64 draw = 29;
+	required uint64 pour = 30;
+}
+
+message desk_player_info{
+	required string account = 1;
+	required string name = 2;
+	required int32 game_coin = 3;
+	required int32 taste_coin = 4;
+	required int32 score = 5;
+	required string recommend = 6;
+	required int64 total_stake = 7;
+	required int64 total_win = 8;
+	required int32 seat = 9;
+}
+
+// 新增桌子
+// msg_id=19 cowboy hall_10_pb
+message add_one_desk_c2s{
+	//required desk_info di = 1;
+	required int32 game = 1;
+	required int32 room = 2;
+	required int32 min_coin = 3;			
+	repeated int32 consume = 4;		
+	required int32 step = 5;	
+	required int32 get_out = 6;		
+	required int32 save = 7;	
+	required int32 exchange_rate = 8;		
+	required string name = 9;
+	required int32 game_df = 10;
+	required int32 hall_type = 11;
+}
+
+// 删除桌子
+// msg_id=20 cowboy
+message reduce_desk_c2s{
+	required int32 game = 1;
+	required int32 room = 2;
+	required int32 desk = 3;
+}
+
+// 修改桌子
+// msg_id=21 cowboy
+message modify_desk_c2s{
+	required int32 game = 1;
+	required int32 room = 2;
+	required int32 desk = 3;				
+	required int32 min_coin = 4;			
+	repeated int32 consume = 5;		
+	required int32 step = 6;	
+	required int32 get_out = 7;		
+	required int32 save = 8;	
+	required int32 exchange_rate = 9;		
+	required string name = 10;
+	required int32 sort = 11;	
+	required int32 game_df = 12;
+	required int32 hall_type = 13;
+}
+
+// msg_id=22
+message desk_modify_result_s2c{
+	required int32 code = 1;
+}
+
+// msg_id=23 cowboy
+message desk_set_state_c2s{
+	required int32 game = 1;
+	required int32 room = 2;
+	required int32 desk = 3;
+	required int32 state = 4;
+}
+
+// msg_id=24
+message desk_set_state_s2c{
+	required int32 code = 1;
+}
+
+// msg_id=25 cowboy
+message get_hall_notice_c2s{
+	required int32 language = 1;
+}
+
+// msg_id=26
+message get_hall_notice_s2c{
+	required int32 code = 1;
+	required string notice_content = 2;
+	required string zfb = 3;
+	required string wx = 4;
+}
+
+// msg_id=27 cowboy
+message set_hall_notice_c2s{
+	required int32 language = 1;
+	required string notice_content = 2;
+	required string zfb = 3;
+	required string wx = 4;
+}
+
+// msg_id=28 
+message set_hall_notice_s2c{
+	required int32 code = 1;
+}
+
+message notice_info{
+	required int32 type = 1;
+	required int32 language = 2;
+	required string content = 3;
+}
+
+// msg_id=29 cowboy
+message query_game_args_config_c2s{
+	//required int32 page = 1;
+}
+
+// msg_id=30
+message query_game_args_config_s2c{
+	required int32 code = 1;
+    repeated string wai = 2;
+}
+
+// 修改游戲参数
+// msg_id=31 cowboy
+message change_game_args_config_c2s{
+	required string target_key = 1;
+	required string new_key = 2;
+	required string new_value = 3;
+}
+
+// msg_id=32
+message change_game_args_config_s2c{
+	required int32 code = 1;
+}
+
+// 新增游戲参数
+// msg_id=33 cowboy
+message add_game_args_config_c2s{
+	required string new_key = 1;
+	required string new_value = 2;
+}
+
+// msg_id=34
+message add_game_args_config_s2c{
+	required int32 code = 1;
+}
+
+//删除服务器参数
+// msg_id=35 cowboy
+message delete_game_args_config_c2s{
+	required string target_key = 1;
+}
+
+// msg_id=36
+message delete_game_args_config_s2c{
+	required int32 code = 1;
+}
+
+// msg_id=38
+message query_lion_desk_s2c{
+	required int32 code = 1;
+	required int32 room1 = 2;
+	required int32 room2 = 3;
+	repeated lion_desk_info di = 4;
+}
+
+// 增加六狮桌子
+// msg_id=39 cowboy
+message add_lion_desk_c2s{
+	required int32 game = 1;
+	required int32 room = 2;
+	required int32 min_coin = 3;			
+	required int32 stake_time = 4;		
+	required int32 min_stake = 5;
+	required int32 max_stake = 6;	
+	required int32 get_out = 7;		
+	required int32 save = 8;	
+	required int32 exchange_rate = 9;		
+	required string name = 10;
+	required int32 animal_rate_table_type = 11;
+	required int32 animal_rate_type = 12;
+	repeated int32 zhx_rate = 13;
+	repeated int32 bank = 14;
+	repeated int32 tie = 15;
+	repeated int32 play = 16;
+	required int32 game_df = 17;
+	required int32 hall_type = 18;
+	required int32 zhx_game_df = 19;
+}
+
+// 修改六狮桌子
+// msg_id=40 cowboy
+message modify_lion_desk_c2s{
+	required int32 game = 1;
+	required int32 room = 2;
+	required int32 min_coin = 3;			
+	required int32 stake_time = 4;		
+	required int32 min_stake = 5;
+	required int32 max_stake = 6;	
+	required int32 get_out = 7;		
+	required int32 save = 8;	
+	required int32 exchange_rate = 9;		
+	required string name = 10;
+	required int32 animal_rate_table_type = 11;
+	required int32 animal_rate_type = 12;
+	repeated int32 zhx_rate = 13;
+	repeated int32 bank = 14;
+	repeated int32 tie = 15;
+	repeated int32 play = 16;
+	required int32 desk = 17;
+	required int32 sort = 18;
+	required int32 game_df = 19;
+	required int32 hall_type = 20;
+	required int32 zhx_game_df = 21;
+}
+
+// 获取抽水金币总额
+// msg_id=41 cowboy
+message get_draw_water_coin_c2s{
+}
+
+// 获取抽水金币总额
+// msg_id=42
+message get_draw_water_coin_s2c{
+	required int32 code = 1;
+	required string coin = 2;
+}
+
+// 抽水金币
+// msg_id=43 cowboy
+message desk_draw_water_c2s{
+	required int32 game = 1;
+	required int32 desk = 2;
+	required int32 coin = 3;
+}
+
+// msg_id=44
+message desk_draw_water_s2c{
+	required int32 code = 1;
+}
+
+// 获取谷歌认证 key 与 二维码
+// msg_id=45 cowboy
+message get_google_auth_key_c2s{
+	required int32 server_arg_key = 1;
+} 
+
+// msg_id=46
+message get_google_auth_key_s2c{
+	required int32 code = 1;
+	required string auth_key = 2;
+	required string auth_name = 3;
+} 
+
+// 生成新的谷歌认证 key
+// msg_id=47 cowboy
+message new_google_auth_key_c2s{
+
+} 
+
+// msg_id=48
+message new_google_auth_key_s2c{
+	required int32 code = 1;
+	required string auth_key = 2;
+} 
+
+// 设置为谷歌认证 key
+// msg_id=49 cowboy
+message set_google_auth_key_c2s{
+	required int32 server_arg_key = 1;
+	required string auth_key = 2;
+	required string auth_name = 3;
+} 
+
+// msg_id=50
+message set_google_auth_key_s2c{
+	required int32 code = 1;
+	required string auth_uri = 2;
+} 
+
+// 设置桌子不同难度 的系数
+// msg_id=51 cowboy
+message get_desk_df_c2s{
+	required int32 game = 1;
+	required int32 room = 2;
+}
+
+// msg_id=52
+message get_desk_df_s2c{
+	required int32 code = 1;
+	repeated df_info dfi = 2;
+}
+
+// msg_id=53 cowboy
+message set_desk_df_c2s{
+	required int32 game = 1;
+	required int32 room = 2;
+	repeated df_info dfi = 3;
+}
+
+// msg_id=54
+message set_desk_df_s2c{
+	required int32 code = 1;
+}
+
+message df_info{
+	required int32 id = 1;
+	required double value = 2;
+}
+
+// msg_id=55 cowboy
+message get_room_config_c2s{
+	
+}
+
+// msg_id=56
+message get_room_config_s2c{
+	required int32 code = 1;
+	repeated room_info ri = 2;
+}
+
+// msg_id=57 cowboy
+message set_room_config_c2s{
+	required int32 game = 1;
+	required int32 room = 2;
+	required string name = 3;
+	required int32 max_desk = 4;
+}
+
+// msg_id=58 
+message set_room_config_s2c{
+	required int32 code = 1;
+}
+
+message room_info{
+	required int32 game = 1;
+	required int32 room = 2;
+	required string name = 3;
+	required int32 max_desk = 4;
+}
+
+// msg_id=59 cowboy
+message query_game_status_c2s{
+
+}
+
+// msg_id=60 
+message query_game_status_s2c{
+	required int32 code = 1;
+	repeated game_state_info gsi = 2;
+}
+
+message game_state_info{
+	required int32 game = 1;
+	required int32 state = 2;
+}
+
+// msg_id=61 cowboy
+message change_game_status_c2s{
+	required int32 game = 1;
+	required int32 state = 2;
+}
+
+// msg_id=62
+message change_game_status_s2c{
+	required int32 code = 1;
+}
+
+// msg_id=63 cowboy
+message reset_ranking_c2s{
+
+}
+
+// msg_id=64
+message reset_ranking_s2c{
+	required int32 code = 1;
+}
+
+// msg_id=65 cowboy
+message recharge_allowed_c2s{
+	required bool allow = 1;
+}
+
+// msg_id=66 cowboy
+message exchange_allowed_c2s{
+	required bool allow = 1;
+}
+
+// msg_id=67
+message trade_allowed_s2c{
+	required int32 code = 1;
+}
+
+// msg_id=68 cowboy
+message get_recharge_return_coin_c2s{
+
+}
+
+// msg_id=69
+message get_recharge_return_coin_s2c{
+	required int32 code = 1;
+	repeated recharge_return_coin_info rrci = 2;
+}
+
+// msg_id=70 cowboy
+message set_recharge_return_coin_c2s{
+	required recharge_return_coin_info rrci = 1;
+}
+
+// msg_id=71
+message set_recharge_return_coin_s2c{
+	required int32 code = 1;
+}
+
+message recharge_return_coin_info{
+	required int32 class = 1;
+	required int32 number = 2;
+	required int32 return_coin = 3;
+}
+
+// msg_id=72 cowboy
+message delete_recharge_return_coin_c2s{
+	required int32 class = 1;
+}
+
+// msg_id=73
+message delete_recharge_return_coin_s2c{
+	required int32 code = 1;
+}
+
+// msg_id=74 cowboy
+message add_recharge_return_coin_c2s{
+	required recharge_return_coin_info rrci = 1;
+}
+
+// msg_id=75
+message add_recharge_return_coin_s2c{
+	required int32 code = 1;
+	required int32 class = 2;
+}
+
+// msg_id=76 cowboy
+message set_recharge_coin_url_c2s{
+	required string url = 1;
+}
+
+// msg_id=77
+message set_recharge_coin_url_s2c{
+	required int32 code = 1;
+}
+
+// msg_id=78 cowboy
+message get_rc_percent_c2s{
+	
+}
+
+// msg_id=79
+message get_rc_percent_s2c{
+	required int32 code = 1;
+	repeated game_rcp rcps = 2;
+
+}
+
+message game_rcp{
+	required int32 game = 1;
+	repeated rc_percent rcp = 2;
+}
+
+message rc_percent{
+	required int32 level = 1;
+	required double percent = 2;
+}
+
+// msg_id=93
+message single_lion_desk_s2c{
+	required int32 code = 1;
+	required simple_lion_desk_info sdi = 2;
+}
+
+message simple_lion_desk_info{
+	required uint64 animal_stake = 1;
+	required uint64 animal_win = 2;
+	repeated desk_player_info dpi = 3;
+	required uint64 zhx_stake = 4;
+	required uint64 zhx_win = 5;
+	required uint64 draw = 6;
+	required uint64 pour = 7;
+}
+
+// 某张桌子分数清零
+// msg_id=94 cowboy
+message desk_score_clean_c2s{
+	required int32 game = 1;
+	required int32 room = 2;
+	required int32 desk = 3;
+}
+
+// msg_id=95
+message desk_score_clean_s2c{
+	required int32 code = 1;
+}
+
+// 某张桌子信息
+// msg_id=96 cowboy
+message single_desk_c2s{
+	required int32 game = 1;
+	required int32 room = 2;
+	required int32 desk = 3;
+}
+
+// msg_id=97
+message single_desk_s2c{
+	required int32 code = 1;
+	required simple_desk_info sdi = 2;
+}
+
+message simple_desk_info{
+	required uint64 total_stake = 1;
+	required uint64 total_win = 2;
+	repeated desk_player_info dpi = 3;
+	required uint64 draw = 4;
+	required uint64 pour = 5;
+}
+
+// 开启一个新游戏
+// msg_id=98 cowboy
+message start_new_game_c2s{
+	required int32 game = 1;
+	required string account = 2;
+}
+
+//msg_id=99
+message start_new_game_s2c{
+	required int32 code = 1;
+}

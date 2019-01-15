@@ -1,0 +1,544 @@
+// module type hall
+
+// 游客登录
+// msg_id=01 cowboy
+message visitor_login_c2s{
+	required string	account = 1;
+	required string name = 2;
+	required int32 language = 3;
+	required device_info di = 4;
+}
+
+// msg_id=02
+message visitor_login_s2c{
+	required int32	code = 1;
+	required string session = 2;
+	repeated player_info pi = 3;		// 玩家信息
+}
+
+message player_info{
+	required int32 taste_coin = 1;		// 体验币
+	required int32 game_coin = 2;		// 游戏币
+	required int32 id = 3;
+	required string name = 4;			// 昵称
+	required int32 head_portrait = 5;	// 头像
+	required int32 sex = 6;				// 性别（0，女；1,男）
+	required int32 level = 7;			// 等级
+	required int32 kind = 8;			// 0，游客；1,玩家；2,微信
+	required string mobile_phone = 9;	// 手机号
+	required string promoter = 10;		// 推广员
+	repeated int32 close = 11;			// 屏蔽信息
+}
+
+// 进入房间
+// msg_id=03
+message into_room_c2s{
+	required int32 room = 1;
+}
+
+// msg_id=04
+message into_room_s2c{
+	required int32 code = 1;
+	required int32 room = 2;
+	repeated desk_info di = 3;
+}
+
+message desk_info{
+	required int32 desk = 1;					// 桌号
+	required int32 min_coin = 2;				// 最小携带币值
+	required int32 exchange_rate = 3;			// 汇率
+	required int32 min_cannon_consume = 4;		// 最小炮值
+	required int32 max_cannon_consume = 5;		// 最大炮值
+	required int32 step = 6;					// 步长
+	required string name = 7;					// 桌名
+	required int32 sort = 8;					// 排序id
+	required int32 get_out = 9;					// 一次取出
+	required int32 save = 10;					// 一次存入
+	repeated desk_player_info dpi = 11;			// 已经加入游戏玩家信息
+}
+
+message simple_desk_info{
+	required int32 desk = 1;					// 桌号
+	repeated desk_player_info dpi = 7;			// 已经加入游戏玩家信息
+}
+
+message desk_player_info{
+	required int32 id = 1;
+	required int32 seat = 2;
+	required int32 head_portrait = 3;
+	required int32 sex = 4;
+	required int32 level = 5;
+	required string name = 6;
+}
+
+// 离开房间
+// msg_id=05
+message leave_room_c2s{
+}
+
+// msg_id=06
+message leave_room_s2c{
+	required	int32	code = 1;
+}
+
+// 存分
+// msg_id=11
+message save_score_c2s{
+	required	int32	save = 1;					// 币
+}
+
+// msg_id=12
+message save_score_s2c{
+	required	int32	code = 1;
+}
+
+// 取分
+// msg_id=13
+message get_out_score_c2s{
+	required	int32	get_out = 1;				// 币
+}
+
+// msg_id=14
+message get_out_score_s2c{
+	required    int32   code = 1;
+}
+
+// 修改个人资料
+// msg_id=15
+message change_player_info_c2s{
+	required int32 head_portrait = 1;				// 默认值0
+	required string name = 2;						// 默认值""
+	required int32 sex = 3;							// 默认值-1
+	required string pass_word = 4;					// 默认值""
+	required string new_password = 5;				// 默认值""
+}
+
+// msg_id=16
+message change_player_info_s2c{
+	required int32 code = 1;
+	required int32 head_portrait = 2;				// 默认值0
+	required string name = 3;						// 默认值""
+	required int32 sex = 4;							// 默认值-1
+}
+
+// 重连（客户端未退出程序的情况下重连）
+// msg_id=17 cowboy
+message reconnect_c2s{
+	required string session = 1;
+	required int32 game = 2;						// 0，大厅；其它游戏
+}
+
+// msg_id=18
+message reconnect_s2c{
+	required int32 code = 1;
+	repeated player_info pi = 2;
+}
+
+// 玩家属性值更新
+// msg_id=19
+message player_attr_update_c2s{
+	required int32 key = 1;
+}
+
+// msg_id=20
+message player_attr_update_s2c{
+	required int32 code = 1;
+	repeated k_v_entry kv = 2;
+}
+
+message k_v_entry{
+	required int32 k = 1;
+	required int32 v = 2;
+}
+
+// msg_id=21
+message idle_client_c2s{
+	required int64 time = 1;
+}
+
+// msg_id=22
+message idle_client_s2c{
+	required int64 time = 1;
+}
+
+// msg_id=23
+message idle_server_s2c{
+	required int64 time = 1;
+}
+
+// msg_id=24
+message idle_server_c2s{
+	required int64 time = 1;
+}
+
+// msg_id=25
+message server_time_c2s{
+}
+
+// 玩家注册
+// msg_id=26 cowboy
+message player_register_c2s{
+	required string account = 1;
+	required string name = 2;
+	required string password = 3;
+	required string again_password = 4;
+	required string recommend = 5;
+	required device_info di = 6;			// 设备信息
+}
+
+message device_info{
+	required string vendoridentfier = 1;
+	required string system_version = 2;
+	required string device_model = 3;
+	required string device_name = 4;
+	required string device_type = 5;
+	required string device_uniqueidentifier = 6;
+	required string operating_system = 7;
+}
+
+// msg_id=27
+message player_register_s2c{
+	required int32 code = 1;
+	required string account = 2;
+}
+
+// 玩家登录
+// msg_id=28 cowboy
+message player_login_c2s{
+	required string account = 1;
+	required string password = 2;
+	required int32 language = 3;
+	required device_info di = 4;			// 设备信息
+}
+
+// msg_id=29
+message player_login_s2c{
+	required int32	code = 1;
+	required string session = 2;
+	repeated player_info pi = 3;		// 玩家信息
+}
+
+// 充值
+// msg_id=30
+message player_recharge_c2s{
+	required int32 rmb = 1;
+	required string remarks = 2;		// 备注
+}
+
+// msg_id=31
+message player_recharge_s2c{
+	required int32 code = 1;
+}
+
+// 兑换
+// msg_id=32
+message player_exchange_c2s{
+	required int32 coin = 1;
+	required string password = 2;
+	required string remarks = 3;
+}
+
+// msg_id=33
+message player_exchange_s2c{
+	required int32 code = 1;
+}
+
+// 加体验币
+// msg_id=34
+message add_taste_coin_c2s{
+}
+
+// msg_id=35
+message add_taste_coin_s2c{
+	required int32 code = 1;
+}
+
+// 退出
+// msg_id=36
+message log_off_c2s{
+	required int32 flag = 1;
+}
+
+// msg_id=37
+message log_off_s2c{
+	required int32 code = 1;
+	required int32 flag = 2;
+}
+
+// 用于特殊错误提示及player异常退出
+// msg_id=38
+message special_error_s2c{
+	required int32 code = 1;
+}
+
+// 大厅信息
+// msg_id=39
+message into_hall_c2s{
+}
+
+// msg_id=40
+message into_hall_s2c{
+	required int32 code = 1;
+	repeated app_info aia = 2;
+	repeated app_info aii = 3;
+	required string download_share = 4;
+}
+
+message app_info{
+	required int32 id = 1;
+	required string package_name = 2;
+	required string activity_name = 3;
+	required string download = 4;
+	required string app_version = 5;
+	required string app_protoid = 6;
+	required string hotupdate_url = 7;
+}
+
+// 界面语言修改
+// msg_id=41
+message language_change_c2s{
+	required int32 language = 1;
+}
+
+// msg_id=42
+message language_change_s2c{
+	required int32 code = 1;
+}
+
+// 微信登录
+// msg_id=43 cowboy
+message wx_login_c2s{
+	required string code = 1;
+	required int32 language = 2;
+	required device_info di = 3;
+}
+
+// msg_id=44
+message wx_login_s2c{
+	required int32	code = 1;
+	required string session = 2;
+	repeated player_info pi = 3;		// 玩家信息
+}
+
+// 某项目是否开启
+// msg_id=45
+message item_is_open_s2c{
+	repeated item_open_status ios = 1;
+}
+
+message item_open_status{
+	required int32 id = 1;
+	required int32 status = 2;				// 0,关闭；1,开启
+}
+
+// 参数信息
+// msg_id=46 cowboy
+message args_c2s{
+	required int32 type = 1;
+}
+
+// msg_id=47
+message args_s2c{
+	required int32 code = 1;
+	repeated key_value_info kvi = 2;
+}
+
+message key_value_info{
+	required string key = 1;
+	required string value = 2;
+}
+
+// 帐号session登录
+// msg_id=48 cowboy
+message session_login_c2s{
+	required string session = 1;
+	required device_info di = 2;			// 设备信息
+}
+
+// 重连通知
+// msg_id=49
+message reconnect_notice_c2s{
+}
+
+// 查看其它上桌玩家分数
+// msg_id=50
+message see_other_desk_player_score_c2s{
+	required int32 id = 1;
+	required int32 desk = 2;
+}
+
+// msg_id=51
+message see_other_desk_player_score_s2c{
+	required int32 code = 1;
+	required int32 score = 2;
+	required int32 level = 3;
+}
+
+// 绑定手机号
+// msg_id=52
+message bind_mobile_phone_c2s{
+	required string no = 1;
+}
+
+// msg_id=53
+message bind_mobile_phone_s2c{
+	required int32 code = 1;
+}
+
+// 绑定推广员
+// msg_id=54
+message bind_recommend_c2s{
+	required string recommend = 1;
+}
+
+// msg_id=55
+message bind_recommend_s2c{
+	required int32 code = 1;
+}
+
+// 关闭某项功能
+// msg_id=56
+message close_item_c2s{
+	required int32 id = 1;
+}
+
+// msg_id=57
+message close_item_s2c{
+	required int32 code = 1;
+	required int32 id = 2;
+}
+
+// 排行榜信息
+// msg_id=58
+message ranking_info_c2s{
+	required int32 ranking = 1;
+	required int32 ranking_type = 2;			// 1，日榜；2,周榜；3,总榜
+}
+
+// msg_id=59
+message ranking_info_s2c{
+	required int32 code = 1;
+	repeated rank_unit ru = 2;
+}
+
+// 榜单、布局及默认排行榜
+// msg_id=60
+message ranking_layout_default_c2s{
+}
+
+// msg_id=61
+message ranking_layout_default_s2c{
+	required int32 code = 1;
+	repeated ranking_name rn = 2;
+	repeated rank_unit ru = 3;
+}
+
+message ranking_name{
+	required int32 ranking = 1;
+	required string name = 2;
+	repeated layout_unit lu = 3;
+}
+
+message rank_unit{
+	repeated string unit = 1;
+}
+
+message layout_unit{
+	required int32 order = 1;
+	required bool isimage = 2;
+	required bool istimestamp = 3;
+	required widget_vector2 pos = 4;
+	required widget_vector2 size = 5;
+	required int32 color = 6;
+	required int32 font_size = 7;
+	required int32 text_align = 8;
+	required int32 font_style = 9;
+}
+
+message widget_vector2{
+	required float x = 1;
+	required float y = 2;
+}
+
+// 他人属性更新
+// msg_id=62
+message others_attr_update_s2c{
+	required int32 code = 1;
+	repeated others_k_v okv = 2;
+}
+
+message others_k_v{
+	required int32 id = 1;
+	required int32 k = 2;
+	required int32 v = 3;
+}
+
+// 审批推广员兑换
+// msg_id=63
+message approve_promoter_exchange_c2s{
+	required int32 approve_result = 1;
+	required string password = 2;
+}
+
+// msg_id=64
+message approve_promoter_exchange_s2c{
+	required int32 code = 1;
+	required int32 coin = 2;
+}
+
+// 通知其他玩家挂起
+// msg_id=93
+message msg_notice_other_hang_s2c{
+	required int32 code = 1;
+	required int32 id = 2;
+}
+
+// 通知消息
+// msg_id=94
+message msg_notice_s2c{
+	required int32 code = 1;
+	repeated notice_info ni = 2;
+}
+
+message notice_info{
+	required int32 type = 1;
+	required string content = 2;
+}
+
+// 广播服务器时间
+// msg_id=95
+message server_time_s2c{
+	required int32 code = 1;
+	required int64 now_time = 2;
+}
+
+// 房间广播新退出玩家
+// msg_id=96
+message room_exit_player_s2c{
+	required int32 code = 1;
+	required int32 desk = 2;
+	required int32 seat = 3;
+}
+
+// 房间广播新加入玩家信息
+// msg_id=97
+message room_player_s2c{
+	required int32 code = 1;
+	repeated simple_desk_info di = 2;
+}
+
+// 玩家取分广播
+// msg_id=98
+message player_get_out_score_s2c{
+	required    int32   code = 1;
+	required    int32   curscore = 2;
+	required	int32	seat = 3;
+}
+
+// 玩家存分广播
+// msg_id=99
+message player_save_score_s2c{
+	required	int32	code = 1;
+	required	int32	curscore = 2;
+	required	int32	seat = 3;					// 玩家位置
+}

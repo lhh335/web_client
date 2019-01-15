@@ -1,0 +1,315 @@
+// start desk
+// module type fish
+
+// 切炮
+// msg_id=01
+message change_cannon_c2s{
+    required int32	aor = 1;			// 1，加；2,减
+}
+
+// msg_id=02
+message change_cannon_s2c{
+    required int32  code = 1;
+}
+
+// 子弹爆炸
+// msg_id=03
+message missile_blast_c2s{
+	repeated fish_info fi = 1;			// 命中鱼信息
+	required int32 missile_id = 2;		// 子弹唯一id
+}
+
+message fish_info{
+	required int32 id = 1;				// 唯一id
+	required int32 mid = 2;				// 模型id
+}
+
+// msg_id=04
+message missile_blast_s2c{
+	required int32 code = 1;
+	repeated dead_fish_info dfi = 2;			// 死鱼信息
+	required int32 missile_id = 3;      // 子弹唯一id
+}
+
+message dead_fish_info{
+	required int32 id = 1;				// 唯一id
+	required int32 mid = 2;				// 模型id
+	required int32 rate = 3;			// 倍率
+	required int32 score = 4;			// 获得积分
+	required int32 drop = 5;			// 死鱼掉落（例：能量炮）
+}
+
+// 开炮
+// msg_id=05
+message open_fire_c2s{
+	required int32 missile_id = 1;
+	required fire_dir dir = 2;			// 炮口向量
+}
+
+message fire_dir{
+	required float x = 1;
+	required float y = 2;
+}
+
+// msg_id=06
+message open_fire_s2c{
+	required int32 code = 1;
+	required int32 missile_id = 2;		// 子弹唯一id
+}
+
+// 加入游戏
+// msg_id=07
+message join_game_c2s{
+	required int32 desk = 1;
+	required int32 seat	= 2;							// 位置
+}
+
+// msg_id=08
+message join_game_s2c{
+	required int32 code = 1;
+	required int32 cannon = 2;
+	required fire_dir dir = 3;
+	repeated other_info oi = 4;
+	required int32 counter = 5;
+}
+
+message other_info{
+	required int32 id = 1;
+	required string name = 2;
+	required int32 cannon	= 3;					// 火炮类型
+	required fire_dir dir = 4;						// 炮口向量
+	required int32 curscore = 5;					// 当前分数
+	required int32 seat = 6;
+	required int32 level = 7;
+	required int32 sex = 8;
+	required int32 head_portrait = 9;               // 头像
+}
+
+// 退出游戏
+// msg_id=09
+message exit_game_c2s{
+}
+
+// msg_id=10
+message exit_game_s2c{
+	required int32 code = 1;
+}
+
+// 子弹同步
+// msg_id=11
+message missile_sync_c2s{
+	repeated missile_x_y mxy = 1;
+}
+
+message missile_x_y{
+	required int32 id = 1;						// 子弹id
+	required float x = 2;
+	required float y = 3;
+	required float v_x = 4;
+	required float v_y = 5;
+}
+
+// msg_id=12
+message missile_sync_s2c{
+	required int32 code = 1;
+}
+
+// 加buff(例：能量炮)
+// msg_id=13
+message add_buff_s2c{
+	required int32 code = 1;
+	required int32 seat = 2;
+	required int32 mid = 3;
+}
+
+// buff结束
+// msg_id=14
+message buff_over_s2c{
+	required int32 code = 1;
+	required int32 seat = 2;
+	required int32 mid = 3;
+}
+
+// 锁定目标
+// msg_id=15
+message lock_fish_c2s{
+	required int32 id = 1;
+}
+
+// 广播
+// msg_id=16
+message lock_fish_s2c{
+	required int32 code = 1;
+	required int32 seat = 2;
+	required int32 fish_id = 3;
+}
+
+// 锁定目标取消
+// msg_id=17
+message lock_fish_cancel_c2s{
+	required int32 fish_id = 1;
+}
+
+// msg_id=18
+message lock_fish_cancel_s2c{
+	required int32 code = 1;
+    required int32 seat = 2;
+    required int32 fish_id = 3;
+}
+
+// 中断返回游戏
+// msg_id=19 cowboy
+message recome_game_c2s{
+	required string session = 1;
+}
+
+// msg_id=20
+message recome_game_s2c{
+	required int32 code = 1;
+	required int32 cannon = 2;
+	required int32 score = 3;
+	required fire_dir dir = 4;
+	repeated other_info oi = 5;
+	repeated run_track_info rti = 6;
+	required int32 counter = 7;
+	repeated buff_info bi = 8;
+	required int32 ban_fish = 9;			// 0，可捕鱼；1，休鱼期
+	required int64 remain_pause_time = 10;	// 定屏鱼剩余时间，单位：秒
+}
+
+message buff_info{
+	required int32 seat = 1;
+	required int32 mid = 2;
+}
+
+// 中断返回房间
+// msg_id=21 cowboy
+message recome_room_c2s{
+	required string session = 1;
+}
+
+// msg_id=22
+message recome_room_s2c{
+	required int32 code = 1;
+}
+
+// 中途加入游戏
+// msg_id=23
+message halfway_join_game_s2c{
+	required int32 code = 1;
+	required int32 cannon = 2;
+	required fire_dir dir = 3;
+	repeated other_info oi = 4;
+	required int32 counter = 5;
+	repeated run_track_info rti = 6;
+	repeated buff_info bi = 7;
+	required int32 ban_fish = 8;			// 0，可捕鱼；1，休鱼期
+	required int64 remain_pause_time = 9;	// 定屏鱼剩余时间，单位：秒
+}
+
+message run_track_info{
+	required int32 track_id = 1;
+	required int32 length = 2;
+	repeated int32 index = 3;
+	required int64 end_time = 4;
+}
+
+// 休鱼期开始前通知
+// msg_id=87
+message ban_fish_notice_s2c{
+	required int64 time = 1;
+}
+
+// 定屏炸弹鱼开始
+// msg_id=88
+message fish_pause_start_s2c{
+	required int32 code = 1;
+	required int64 remain_pause_time = 2;
+}
+
+// 定屏炸弹鱼结束
+// msg_id=89
+message fish_pause_end_s2c{
+	required int32 code = 1;
+}
+
+// 潮水开始前通知
+// msg_id=90
+message fish_tide_notice_s2c{
+	required int64 time = 1;
+}
+
+// 场景切换结束
+// msg_id=91
+message scene_change_end_s2c{
+	required int32 code = 1;
+}
+
+// 场景切换
+// msg_id=92
+message scene_change_start_s2c{
+	required int32 code = 1;
+	required int32 counter = 2;
+}
+
+// 鱼群信息
+// msg_id=93
+message fish_group_s2c{
+	required int32 code = 1;
+	required int64 time = 2;
+	repeated track_info ti = 3;
+}
+
+message track_info{
+	required int32 track_id = 1;
+	repeated int32 index = 2;
+}
+
+// 子弹同步(广播)
+// msg_id=94
+message player_missile_sync_s2c{
+	required int32 code = 1;
+	required int32 seat = 2;					// 座位号
+	repeated missile_x_y mxy = 3;
+}
+
+// 开炮广播
+// msg_id=95
+message player_open_fire_s2c{
+	required int32 code = 1;
+	required int32 curscore = 2;
+	required fire_dir dir = 3;				// 炮口向量
+	required int32 seat = 4;				// 位置
+	required int32 missile_id = 5;			// 子弹唯一id
+}
+
+// 子弹爆炸广播
+// msg_id=96
+message player_missile_blast_s2c{
+	required int32 code = 1;
+	required int32 seat = 2;
+	required int32 curscore = 3;
+	repeated dead_fish_info dfi = 4;			// 死鱼信息
+	required int32 missile_id = 5;
+}
+
+// 退出游戏(广播)
+// msg_id=97
+message player_exit_game_s2c{
+	required int32 code = 1;
+	required int32 seat = 2;
+}
+// 加入游戏玩家信息
+// msg_id=98
+message join_game_player_s2c{
+	required int32 code = 1;
+	repeated other_info oi = 2;
+}
+
+// 切炮广播
+// msg_id=99
+message player_change_cannon_s2c{
+    required int32  code = 1;
+	required int32	cannon = 2;		// 大炮类型
+	required int32	seat = 3;		// 位置
+}

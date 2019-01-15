@@ -1,0 +1,55 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>管理员后台</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+</head>
+
+<body>
+  <div id="load">
+    <div class="mask">
+      <div class="spinner">
+        <div class="spinner-container container1">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container2">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container3">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id='app'>
+    <script type="text/javascript" src="config.js"></script>
+    <script type="text/javascript" src="admin.js"></script>
+    <script>
+      window.onload = function () {
+        var loading = document.getElementById("load");
+        loading.parentNode.removeChild(loading);
+      }
+      apptype = 0;
+      window.proto_dir = "../web_core/";
+      window.Lang = config["Lang"];
+      window.release = config.release;
+    </script>
+    <script src="app.js"></script>
+  </div>
+</body>
+
+</html>

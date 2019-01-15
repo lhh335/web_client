@@ -1,0 +1,28 @@
+// 统一下单
+// msg_id=01
+message unified_order_c2s{
+	required int32 total_fee = 1;						// 单位：元
+}
+
+// msg_id=02
+message unified_order_s2c{
+	required int32 code = 1;
+	required string appid = 2;
+	required string partnerid = 3;
+	required string prepayid = 4;
+	required string package = 5;
+	required string noncestr = 6;
+	required string timestamp = 7;
+	required string sign = 8;
+}
+
+// 查询订单
+// msg_id=03
+message query_order_c2s{
+	required string out_trade_no = 1;
+}
+
+// msg_id=04
+message query_order_s2c{
+	required int32 code = 1;
+}

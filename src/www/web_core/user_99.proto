@@ -1,0 +1,670 @@
+//后台用户相关协议
+//查询所有玩家
+// msg_id=01 cowboy
+message query_players_c2s{
+	required int32 data_length = 1;			// 已获取数据长度
+	required string filters = 2;		// 查找过滤
+	required string sort = 3; 			// 排序
+}
+
+// msg_id=02
+message query_players_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+	required int32 sum = 3;
+    repeated player_info pi = 4;
+	repeated total_info ti = 5;
+}
+
+message total_info{
+	required int32 kind = 1;
+	required int64 coin = 2;
+	required int32 sum = 3;
+}
+
+message player_info{
+	required int32 taste_coin = 1;		// 体验币
+	required int32 game_coin = 2;		// 游戏币
+	required int32 id = 3;
+	required string name = 4;			// 昵称
+	required int32 head_portrait = 5;	// 头像
+	required int32 sex = 6;				// 性别（0，女；1,男）
+	required int32 level = 7;	
+	required int32 kind = 8;
+	required string account = 9;
+	required string recommend = 10;		//推荐人
+	required int32 status = 11;
+	required stake_win taste_coin_sw = 12;			
+	required stake_win game_coin_sw = 13;	
+	required coin_details cd = 14;	
+	required int32 playing = 15;
+	required int32 vertify = 16;
+	required coin_record cr = 17;
+	required string mobile_phone = 18;
+	required int32 score = 19;
+	required int32 game = 20;
+	required int32 room = 21;
+	required int32 desk = 22;
+	required int32 exchange_rate = 23;
+	required int32 login_time = 24;
+}
+
+// 总押分 总得分
+message stake_win{
+	required int64 total_stake = 1;			
+	required int64 total_win = 2;
+}
+
+// 玩家金币情况
+message coin_details{
+	required int64 total_recharge = 1;
+	required int64 total_exchange = 2;
+	required int64 total_given = 3;
+	required int64 total_confiscated = 4;
+	required int64 total_asked = 5;	
+	required int64 total_return = 6;
+}
+
+// 玩家金币记录
+message coin_record{
+	required int32 record_time = 1;
+	required int32 record_game_coin = 2;
+	required int32 record_taste_coin = 3;
+	required int64 record_recharge = 4;
+	required int64 record_exchange = 5;
+	required int64 record_given = 6;
+	required int64 record_confiscated = 7;
+	required int64 record_asked = 8;
+	required int64 record_game_stake = 9;
+	required int64 record_game_win = 10;
+	required int64 record_taste_stake = 11;
+	required int64 record_taste_win = 12;
+	required int64 record_return = 13;
+}
+
+// 获取玩家层级关系
+// msg_id=03 cowboy
+message query_relation_c2s{
+	required int32 id = 1;
+}
+
+// msg_id=04
+message query_relation_s2c{
+	required int32 code =1;
+	required relation_info ri = 2;
+}
+
+message relation_info{
+	required int32 higherups = 1;
+	repeated int32 subordinate = 2;
+	required double return_coin = 3;
+}
+
+// 修改玩家信息
+// msg_id=21 cowboy
+message reset_player_info_c2s{
+	required string target_account = 1;
+	required string name = 2;
+	required int32 head_portrait = 3;
+	required int32 sex = 4;
+	required int32 level = 5;
+	required string recommend = 6;
+	required string mobile_phone = 7;
+}
+
+// msg_id=22 
+message reset_player_info_s2c{
+	required int32 code = 1;
+	repeated player_info player = 2;
+}
+
+// 修改玩家密码
+// msg_id=23 cowboy
+message modify_player_c2s{
+	required string target_account = 1;
+	required string your_password = 2;
+	required string password = 3;
+}
+
+// msg_id=24
+message modify_player_s2c{
+	required int32 code = 1;
+}
+
+// 查询玩家登陆日志
+// msg_id=25 cowboy
+message query_player_log_c2s{
+	required string account = 1;
+	required int32 from = 2;
+	required int32 to = 3;
+	required int32 data_length = 4;
+}
+
+// msg_id=26
+message query_player_log_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+    repeated player_log pl = 3;
+}
+
+message player_log{
+	required string account = 1;
+	required string vendoridentfier = 2; 
+	required string system_version = 3;
+	required string device_model = 4;
+	required string device_name = 5;
+	required string device_type = 6;
+	required string device_uniqueidentifier = 7;
+	required string operating_system = 8;
+	required string ip = 9;
+	required int32 login_time = 10;
+}
+
+// 按币种查询玩家分数流水
+// msg_id=27 cowboy
+message query_score_stream_c2s{
+	required string account = 1;
+	required string search = 2;
+	required string sort = 3;
+	required int32 data_length = 4;
+	required int64 from = 5;
+	required int64 to = 6;
+	required int32 room = 7;
+}
+
+// msg_id=28
+message query_score_stream_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+    repeated score_stream_info ssi = 3;
+}
+
+message score_stream_info{
+	required string account = 1;
+	required int32 id = 2;
+	required int32 score = 3;
+	required int32 flag = 4;
+	required int32 operation = 5;
+	required int32 game = 6;
+	required int32 room = 7;
+	required int32 desk = 8;
+	required int64 time = 9;
+	required int32 change_score = 10;
+	required int32 vertify = 11;
+}
+
+// 删除玩家
+// msg_id=29 cowboy
+message delete_player_c2s{
+	required string target_account = 1;
+	required string your_password = 2;
+}
+
+// msg_id=30
+message delete_player_s2c{
+	required int32 code = 1;
+}
+
+// 按币种查询玩家金幣流水
+// msg_id=31 cowboy
+message query_coin_stream_c2s{
+	required string account = 1;
+	required string search = 2;
+	required string sort = 3;
+	required int32 data_length = 4;
+	required int64 from = 5;
+	required int64 to = 6;
+	required int32 room = 7;
+}
+
+// msg_id=32
+message query_coin_stream_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+    repeated coin_stream_info csi = 3;
+}
+
+message coin_stream_info{
+	required string account = 1;
+	required int32 id = 2;
+	required int32 coin = 3;
+	required int32 flag = 4;
+	required int32 operation = 5;
+	required int32 game = 6;
+	required int32 room = 7;
+	required int32 desk = 8;
+	required int64 time = 9;
+	required int32 change_coin = 10;
+	required int32 type = 11;
+	required int32 vertify = 12;
+}
+
+// 10分钟流水 成块搜寻
+// msg_id=33 cowboy
+message coin_stream_block_c2s{
+	required string account = 1;
+	required string search = 2;
+	required string sort = 3;
+	required int32 data_length = 4;
+}
+
+// 10分钟流水 成块搜寻
+// msg_id=34
+message coin_stream_block_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+    repeated block_stream_info bsi = 3;
+}
+
+message block_stream_info{
+	required int64 record_game_coin = 1;
+	required int64 record_taste_coin = 2;
+	required int64 score = 3;
+	required int32 ex_rate = 4;
+	required int64 record_recharge = 5;
+	required int64 record_exchange = 6;
+	required int64 record_given = 7;
+	required int64 record_confiscated = 8;
+	required int64 record_asked = 9;
+	required int32 record_time = 10;
+	required int64 record_game_stake = 11;
+	required int64 record_game_win = 12;
+	required int64 record_taste_stake = 13;
+	required int64 record_taste_win = 14;
+	required int32 room = 15;
+	required int32 record_return = 16;
+}
+
+// 恢复流水为正常
+// msg_id=35 cowboy
+message remark_player_vertify_c2s{
+	required string target_account = 1;
+}
+
+// msg_id=36
+message remark_player_vertify_s2c{
+	required int32 code = 1;
+}
+
+// 快照 玩家当前金币情況
+// msg_id=37 cowboy
+message print_player_coin_log_c2s{
+	 required string target_account = 1;
+}
+
+// msg_id=38
+message print_player_coin_log_s2c{
+	required int32 code = 1;
+	required coin_record cr = 2;
+}
+
+// 删除操作日志
+// msg_id=39 cowboy
+message remove_operate_log_c2s{
+	required string search = 1;
+	required int32 type = 2;
+}
+
+// msg_id=40
+message remove_operate_log_s2c{
+	required int32 code = 1;
+}
+
+// 修改推广员暴击值
+// msg_id=41 cowboy
+message set_promoter_bang_c2s{
+	required string account = 1;
+	required string password = 2;
+	required int32 bang = 3;
+}
+
+// msg_id=42
+message set_promoter_bang_s2c{
+	required int32 code = 1;
+}
+
+// 查询返利流水
+// msg_id=43 cowboy
+message query_return_stream_c2s{
+	required string account = 1;
+	required string search = 2;
+	required string sort = 3;
+	required int32 data_length = 4;
+	required int64 from = 5;
+	required int64 to = 6;
+}
+
+// msg_id=44
+message query_return_stream_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+	repeated return_stream_info rsi = 3;
+}
+
+message return_stream_info{
+	required string account = 1;
+	required double add_return_coin = 2;
+	required uint32 desk = 3;
+	required uint32 game = 4;
+	required uint32 id = 5;
+	required uint32 room = 6;
+	required uint32 source = 7;
+	required string subordinate = 8;
+	required double total_return_coin = 9;
+	required int64 time = 10;
+	required int32 subordinate_id = 11;
+}
+
+// 注册推广员
+// msg_id=51 cowboy
+message regist_promoter_c2s{
+	required string account = 1;
+	required string password = 2;
+	required int32 language = 3;	
+}
+
+// msg_id=52
+message regist_promoter_s2c{
+	required int32 code = 1;
+}
+
+// 推广员登陆
+// msg_id=53 cowboy
+message promoter_login_c2s{
+	required string account = 1;
+	required string session = 2;
+}
+
+// msg_id=54
+message promoter_login_s2c{
+	required int32	code = 1;
+	repeated promoter_info pi = 2;
+	required string version = 3;
+}
+
+// 查询推广员
+// msg_id=55 cowboy
+message query_promoter_c2s{
+	required string account = 1;
+	required int32 data_length = 2;
+	required string filters = 3;
+	required string sort = 4;
+}
+
+// msg_id=56
+message query_promoter_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+    repeated promoter_info pi = 3;
+	required int32 sum = 4;
+}
+
+message promoter_info{
+	required string account = 1;
+	required int32 id = 2;
+	required int32 game_coin = 3;
+	required string leader = 4;
+	required int32 status = 5;
+	required int32 language = 6;
+	required int32 time = 7;
+	required string session = 8;
+	required int32 bang = 9;
+}
+
+// 管理员登录
+// msg_id=57 cowboy
+message admin_login_c2s{
+	required string account = 1;
+	required string session = 2;
+}
+
+// msg_id=58
+message admin_login_s2c{
+	required int32	code = 1;
+	repeated admin_info ai = 2;
+	required string version = 3;
+}
+
+// 管理员查询
+// msg_id=59 cowboy
+message query_admin_log_c2s{
+	required string account = 1;
+	required string search = 2;
+	required int32 data_length = 3;
+}
+
+// msg_id=60
+ message query_admin_log_s2c{
+ 	required int32 code = 1;
+	required int32 count = 2;
+    repeated web_log wl = 3;
+}
+
+// 推广员日志
+// msg_id=61 cowboy
+message query_promoter_log_c2s{
+	required string account = 1;
+	required string search = 2;
+	required int32 data_length = 3;
+}
+
+// msg_id=62
+message query_promoter_log_s2c{
+	required int32 code = 1;
+    required int32 count = 2;
+    repeated web_log wl = 3;
+}
+
+message web_log{
+	required string account = 1;
+	required int32 status = 2;
+	required int32 proto_id = 3;
+	required string proto_args = 4;
+	required int32 flag = 5;
+	required int32 time = 6;
+}
+
+// 管理员注册
+// msg_id=63 cowboy
+message regist_administrater_c2s{
+	required string account = 1;
+	required string password = 2;
+	required int32 language = 3;	
+}
+
+// msg_id=64
+message regist_administrater_s2c{
+	required int32 code = 1;
+}
+
+// 管理员删除
+// msg_id=65 cowboy
+message delete_administrater_c2s{
+	required string target_account = 1;
+	required string your_password = 2;
+}
+
+// msg_id=66
+message delete_administrater_s2c{
+	required int32 code = 1;
+}
+
+// 删除推广员
+// msg_id=67 cowboy
+message delete_promoter_c2s{
+	required string target_account = 1;
+	required string your_password = 2;
+}
+
+// msg_id=68
+message delete_promoter_s2c{
+	required int32 code = 1;
+}
+
+// 管理员重置密码
+// msg_id=69 cowboy
+message reset_administrater_c2s{
+	required string target_account = 1;
+	required string your_password = 2;
+	required string password = 3;
+}
+
+// msg_id=70
+message reset_administrater_s2c{
+	required int32 code = 1;
+}
+
+// 推广员重置密码
+// msg_id=71 cowboy
+message reset_promoter_c2s{
+	required string target_account = 1;
+	required string your_password = 2;
+	required string password = 3;
+}
+
+// msg_id=72
+message reset_promoter_s2c{
+	required int32 code = 1;
+}
+
+// 管理员查询
+// msg_id=73 cowboy
+message query_administraters_c2s{
+	required string account = 1;
+	required int32 data_length = 2;
+	required string filters = 3;
+	required string sort = 4;
+}
+
+// msg_id=74
+message query_administraters_s2c{
+	required int32 code = 1;
+	required int32 count = 2;
+    repeated admin_info ai = 3;
+	required int32 sum = 4;
+}
+
+message admin_info{
+	required string account = 1;
+	required int32 id = 2;
+	required string leader = 3;
+	required int32 status = 4;
+	required int32 language = 5;
+	required int32 time = 6;
+	required string session = 7;
+}
+
+// 管理员 推广员冻结
+// msg_id=75 cowboy
+message frozen_account_c2s{
+	required string target_account = 1;
+	required int32 type = 2;
+	required bool be_frozen = 3;
+}
+
+// msg_id=76
+message frozen_account_s2c{
+	required int32 code = 1;
+}
+
+// msg_id=77 cowboy
+message admin_login_auth_c2s{
+	required string account = 1;
+	required string password = 2;
+	required int32 auth = 3;
+}
+
+// msg_id=78 cowboy
+message promoter_login_auth_c2s{
+	required string account = 1;
+	required string password = 2;
+	required int32 auth = 3;
+}
+
+// msg_id=79 cowboy
+message manager_login_auth_c2s{
+	required int32 auth = 1;
+}
+
+// msg_id=80 cowboy
+message user_log_out_c2s{
+	required string account = 1;
+	required int32 type = 2;
+	required string session = 3;
+}
+
+// msg_id=81
+message user_log_out_s2c{
+	required int32 code = 1;
+}
+
+// msg_id=82 cowboy
+message drop_link_c2s{
+	required string account = 1;
+	required int32 type = 2;
+	required string session = 3;
+}
+
+// msg_id=83 cowboy
+message vender_login_auth_c2s{
+	required int32 auth = 1;
+}
+
+// msg_id=84
+message user_login_s2c{
+	required int32 code = 1;
+	required string session = 2;
+	required string version = 3;
+}
+
+// msg_id=85 cowboy
+message session_login_c2s{
+	required string session = 1;
+	required int32 type = 2;
+}
+
+// msg_id=94 cowboy
+message query_sessions_c2s{
+	required string account = 1;
+	required int32 type = 2;
+	required string session = 3;
+}
+
+// msg_id=95
+message query_sessions_s2c{
+	required int32 code = 1;
+	repeated session_info si = 2;
+}
+
+message session_info{
+	required string id = 1;
+	required int32 login_time = 2;
+	required string device = 3;
+	required string city = 4;
+}
+
+// msg_id=96 cowboy
+message polling_message_c2s{
+	required string account = 1;
+	required int32 type = 2;
+}
+
+// msg_id=97
+message polling_message_s2c{
+	required int32 code = 1;
+	required string msg = 2;
+	required int32 time = 3;
+}
+
+// msg_id=98 
+message push_notifications_s2c{
+	required int32 code = 1;
+	required string msg = 2;
+	required int32 time = 3;
+}
+
+// msg_id=99
+message error_not_login_s2c{
+	required int32 code = 1;
+}
+
